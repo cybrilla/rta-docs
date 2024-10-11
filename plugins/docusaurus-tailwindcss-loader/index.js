@@ -9,7 +9,7 @@ module.exports = function (context, options) {
             tagName: "link",
             attributes: {
               rel: "stylesheet",
-              href: "./preflight.min.css",
+              href: "https://cdn.jsdelivr.net/npm/tailwindcss/dist/preflight.min.css",
             },
           },
         ],
