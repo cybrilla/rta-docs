@@ -4,8 +4,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const BASE_URL =
   process.env.PR_NUMBER !== undefined
-    ? `/docs/pr-preview/pr-${process.env.PR_NUMBER}/`
-    : "/docs/";
+    ? `/rta-docs/pr-preview/pr-${process.env.PR_NUMBER}/`
+    : "/rta-docs/";
 
 const config: Config = {
   title: "Cybrilla RTA",
@@ -21,7 +21,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "cybrilla", // Usually your GitHub org/user name.
-  projectName: "docs", // Usually your repo name.
+  projectName: "rta-docs", // Usually your repo name.
 
   trailingSlash: false,
   onBrokenLinks: "throw",
