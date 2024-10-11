@@ -1,0 +1,41 @@
+---
+sidebar_position: 1
+sidebar_label: Introduction
+title: Introduction
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import DocCardList from "@theme/DocCardList";
+import ThemedImage from "@theme/ThemedImage";
+
+# Fintech Primitives (FP) Product Suite
+
+Learn about the FP Services and how to facilitate mutual fund investments for your investors.
+
+<DocCardList
+  items={[
+    {
+      label: "MF Orders",
+      type: "link",
+      href: "/docs/mf-orders/lumpsum-orders/create-a-purchase-order",
+      description: "Enable lumpsum and sip investments for your investors",
+    },
+  ]}
+/>
+
+## Resources
+
+You can access all the FP services via APIs.
+
+- Read through the specs at [API Documentation](https://fintechprimitives.com/api)
+- Try the APIs through our [Postman Collection](https://www.postman.com/fintechprimitives/workspace/fp-apis/)
+
+## Platform as a Service
+
+<ThemedImage
+  alt="FP Diagram"
+  sources={{
+    light: useBaseUrl("/img/fp_diagram_light.png"),
+    dark: useBaseUrl("/img/fp_diagram_dark.png"),
+  }}
+/>
