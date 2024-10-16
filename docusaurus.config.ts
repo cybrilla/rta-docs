@@ -9,7 +9,7 @@ const BASE_URL =
 
 const config: Config = {
   title: "Cybrilla RTA",
-  tagline: "Dinosaurs are cool",
+  tagline: "Dinosaurs are very cool",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
