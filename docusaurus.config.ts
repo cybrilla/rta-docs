@@ -4,8 +4,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const BASE_URL =
   process.env.PR_NUMBER !== undefined
-    ? `/rta-docs/pr-preview/pr-${process.env.PR_NUMBER}/`
-    : "/rta-docs/";
+    ? `/pr-preview/pr-${process.env.PR_NUMBER}/`
+    : "/";
 
 const config: Config = {
   title: "Cybrilla RTA",
