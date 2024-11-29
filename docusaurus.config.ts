@@ -64,28 +64,9 @@ const config: Config = {
       },
       items: [
         {
-          href: "https://fintechprimitives.com/api/",
-          label: "APIs",
+          href: "https://www.cybrilla.com/careers.html",
+          label: "Careers",
           position: "right",
-        },
-        {
-          type: "dropdown",
-          label: "About us",
-          position: "right",
-          items: [
-            {
-              label: "Fintech primitives",
-              href: "https://fintechprimitives.com/",
-            },
-            {
-              label: "Cybrilla technologies",
-              href: "https://www.cybrilla.com/",
-            },
-            {
-              label: "Careers",
-              href: "https://www.cybrilla.com/careers.html",
-            },
-          ],
         },
       ],
     },
