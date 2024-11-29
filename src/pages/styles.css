@@ -339,6 +339,7 @@ h2 {
 }
 .image-desc-wrapper svg {
   margin-right: 5px;
+  flex-shrink: 0;
 }
 .footer {
   text-align: center;
