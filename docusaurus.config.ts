@@ -39,7 +39,9 @@ const config: Config = {
     [
       "classic",
       {
-        docs: false,
+        docs: {
+          sidebarPath: "./sidebars.ts",
+        },
         blog: false,
         theme: {
           customCss: "./src/css/custom.css",
@@ -63,6 +65,12 @@ const config: Config = {
         src: "img/cybrilla-logo-full.webp",
       },
       items: [
+        {
+          type: "docSidebar",
+          sidebarId: "sidebar",
+          position: "left",
+          label: "Docs",
+        },
         {
           href: "https://www.cybrilla.com/careers.html",
           label: "Careers",
