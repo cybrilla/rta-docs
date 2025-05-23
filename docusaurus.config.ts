@@ -26,7 +26,14 @@ const config: Config = {
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  // plugins: ["docusaurus-tailwindcss-loader", "docusaurus-lunr-search"],
+  plugins: [
+    "@docusaurus/theme-mermaid",
+    "docusaurus-lunr-search", // Only works after building the app, use `npm run build` & `npm run serve` to test
+    // "docusaurus-tailwindcss-loader",
+  ],
+  markdown: {
+    mermaid: true,
+  },
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
