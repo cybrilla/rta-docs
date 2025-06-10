@@ -8,8 +8,8 @@ const BASE_URL =
     : "/";
 
 const config: Config = {
-  title: "Cybrilla RTA",
-  tagline: "Dinosaurs are cool",
+  title: "Cybrilla POA",
+  tagline: "A digital point of acceptance for MF transactions",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here

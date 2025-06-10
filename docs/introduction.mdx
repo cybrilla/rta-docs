@@ -5,50 +5,23 @@ title: Introduction
 ---
 
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import DocCardList from "@theme/DocCardList";
-import ThemedImage from "@theme/ThemedImage";
 
-# Fintech Primitives (FP) Product Suite
+# Cybrilla POA
 
-Learn about the FP Services and how to facilitate mutual fund investments for your investors.
+POA = Point of Acceptance
 
-<DocCardList
-  items={[
-    {
-      label: "MF Orders",
-      type: "link",
-      href: "/docs/mf-orders/lumpsum-orders/create-a-purchase-order",
-      description: "Enable lumpsum and sip investments for your investors",
-    },
-  ]}
-/>
+Think of POA as a digital branch, acting on behalf of the AMCs, to accept applications related to MF transactions. The applications are accepted from Mutual Fund Distributors (having ARN license or RIA license).
 
-## Resources
+To submit applications, you can integrate POA APIs directly or use any of our authorized partners - [Fintech Primitives](https://fintechprimitives.com).
 
-You can access all the FP services via APIs.
-
-- Read through the specs at [API Documentation](https://fintechprimitives.com/api)
-- Try the APIs through our [Postman Collection](https://www.postman.com/fintechprimitives/workspace/fp-apis/)
-
-## Platform as a Service
-
-<ThemedImage
-  alt="FP Diagram"
-  sources={{
-    light: useBaseUrl("/img/fp_diagram_light.png"),
-    dark: useBaseUrl("/img/fp_diagram_dark.png"),
-  }}
-/>
-
-## Client Side Integration
-
-The following diagram is an oversimplified representation of how Client Side Integration is possible with FP.
+POA APIs use [ONDC MF Specifications](https://ondc-official.github.io/ONDC-FIS-Specifications/?branch=draft-FIS14-2.1.0). The APIs are asynchronous in nature, which means POA accepts the request (`action` call), sends an acknowledgement (`ACK`) and later respond back with the result of the request (`on_action` callback).
 
 ```mermaid
 sequenceDiagram
-    participant A as Browser/Mobile App
-    participant B as FP
-
-    A->>B: Hi FP
-    B->>A: Hi Client
+  participant D as Distributor
+  participant C as POA
+  D -) C: `action` call - HTTP Request
+  C --) D: `ACK` - HTTP Response
+  C -) D: `on_action` callback - HTTP Request
+  D --) C: `ACK` - HTTP Response
 ```
