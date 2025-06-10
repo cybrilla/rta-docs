@@ -14,10 +14,16 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
 .navbar__brand .navbar__logo img {
   height: auto;
-  width: 200px;
+  max-width: 100px;
+  width: 100%;
 }
+
 .section-gradient {
   padding: 20px;
   background: #eff8f5;
@@ -363,6 +369,9 @@ h2 {
   }
   .card-container.card-container-gap-sm {
     flex-direction: row;
+  }
+  .navbar__brand .navbar__logo img {
+    max-width: 200px;
   }
 }
 @media (min-width: 992px) {
