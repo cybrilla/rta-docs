@@ -79,7 +79,7 @@ const config: Config = {
           label: "Docs",
         },
         {
-          href: "https://www.cybrilla.com/careers.html",
+          href: "https://cybrilla.com/careers",
           label: "Careers",
           position: "right",
         },
