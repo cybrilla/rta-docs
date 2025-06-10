@@ -14,11 +14,13 @@ export default function Home(): JSX.Element {
   return (
     <Layout>
       <div className="poa-wrapper">
-        <div className="hero">
+        <div className="hero container">
           <div className="hero-content">
             <h1>Simplify mutual fund distribution with Cybrilla</h1>
             <p>
-              Reduce costs, accelerate time to market, and enhance investor
+              We provide the backend infrastructure that enables AMCs and
+              distributors to efficiently process and accept orders — helping
+              reduce costs, speed up time to market, and elevate the investor
               experience.
             </p>
           </div>
