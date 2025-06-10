@@ -28,7 +28,7 @@ export default function Home(): JSX.Element {
 
         <div className="section-gradient section" id="distributor-benefits">
           <div className="container">
-            <h2>Value proposition for Distributors</h2>
+            <h2>Value Proposition for Distributors</h2>
             <div className="card-container">
               <div className="card">
                 <div className="card-header">
@@ -41,7 +41,7 @@ export default function Home(): JSX.Element {
                   <li>Zero payment gateway costs</li>
                   <li>Zero annual fee or maintenance fees for API access</li>
                   <li>Zero operations cost for order and payment operations</li>
-                  <li>Zero cost KYC for new investors</li>
+                  <li>Zero-cost KYC for new investors</li>
                   <li>Zero hidden costs</li>
                 </ul>
               </div>
@@ -92,7 +92,7 @@ export default function Home(): JSX.Element {
                   </li>
                   <li>Regulatory compliance handled at the platform level</li>
                   <li>
-                    Adherence to cybersecurity frameworks reducing security
+                    Adherence to cybersecurity frameworks, reducing security
                     risks
                   </li>
                   <li>Load-tested infrastructure with 99.9% uptime</li>
