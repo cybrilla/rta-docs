@@ -69,7 +69,7 @@ const config: Config = {
       title: "",
       logo: {
         alt: "Cybrilla logo",
-        src: "img/cybrilla-logo-full.webp",
+        src: "img/cybrilla-logo.svg",
       },
       items: [
         {
@@ -79,8 +79,23 @@ const config: Config = {
           label: "Docs",
         },
         {
+          href: "https://cybrilla.com/about",
+          label: "About Us",
+          position: "right",
+        },
+        {
           href: "https://cybrilla.com/careers",
           label: "Careers",
+          position: "right",
+        },
+        {
+          href: "https://cybrilla.com/in-the-news",
+          label: "In The News",
+          position: "right",
+        },
+        {
+          href: "https://cybrilla.com/contact",
+          label: "Contact Us",
           position: "right",
         },
       ],
