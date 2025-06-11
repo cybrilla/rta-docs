@@ -70,6 +70,7 @@ const config: Config = {
       logo: {
         alt: "Cybrilla logo",
         src: "img/cybrilla-logo.svg",
+        href: "https://cybrilla.com/",
       },
       items: [
         {
