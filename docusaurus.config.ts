@@ -71,7 +71,6 @@ const config: Config = {
         alt: "Cybrilla logo",
         src: "img/cybrilla-logo.svg",
         href: "https://cybrilla.com/",
-        target: "_blank",
       },
       items: [
         {
@@ -173,7 +172,6 @@ const config: Config = {
         alt: "Cybrilla logo",
         src: "img/cybrilla-logo.svg",
         href: "https://cybrilla.com/",
-        target: "_blank",
       },
       copyright: `Copyright © ${new Date().getFullYear()} Cybrilla Technologies Private Limited`,
     },
