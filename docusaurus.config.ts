@@ -71,6 +71,7 @@ const config: Config = {
         alt: "Cybrilla logo",
         src: "img/cybrilla-logo.svg",
         href: "https://cybrilla.com/",
+        target: "_blank",
       },
       items: [
         {
@@ -83,25 +84,21 @@ const config: Config = {
           href: "https://cybrilla.com/about",
           label: "About Us",
           position: "right",
-          target: "_blank",
         },
         {
           href: "https://cybrilla.com/careers",
           label: "Careers",
           position: "right",
-          target: "_blank",
         },
         {
           href: "https://cybrilla.com/in-the-news",
           label: "In The News",
           position: "right",
-          target: "_blank",
         },
         {
           href: "https://cybrilla.com/contact",
           label: "Contact Us",
           position: "right",
-          target: "_blank",
         },
       ],
     },
@@ -114,12 +111,10 @@ const config: Config = {
             {
               label: "About Us",
               href: "https://cybrilla.com/about",
-              target: "_blank",
             },
             {
               label: "Careers",
               href: "https://cybrilla.com/careers",
-              target: "_blank",
             },
           ],
         },
@@ -129,17 +124,14 @@ const config: Config = {
             {
               label: "Privacy Policy",
               href: "https://cybrilla.com/privacy-policy",
-              target: "_blank",
             },
             {
               label: "Payment Terms and Refund Policy",
               href: "https://cybrilla.com/payment-terms-and-refund-policy",
-              target: "_blank",
             },
             {
               label: "Terms of Use",
               href: "https://cybrilla.com/terms-of-use",
-              target: "_blank",
             },
           ],
         },
@@ -149,12 +141,10 @@ const config: Config = {
             {
               label: "Contact Us",
               href: "https://cybrilla.com/contact",
-              target: "_blank",
             },
             {
               label: "LinkedIn",
               href: "https://www.linkedin.com/company/cybrilla-technologies/",
-              target: "_blank",
             },
           ],
         },
@@ -172,6 +162,7 @@ const config: Config = {
         alt: "Cybrilla logo",
         src: "img/cybrilla-logo.svg",
         href: "https://cybrilla.com/",
+        target: "_blank",
       },
       copyright: `Copyright © ${new Date().getFullYear()} Cybrilla Technologies Private Limited`,
     },
