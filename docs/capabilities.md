@@ -26,4 +26,4 @@ title: Capabilities
 
 ## Roadmap
 - UPI and UPI Autopay with collect request flow, intent flow and qr flow (ability to you to control the payment UX)
-- UPI Autopay: Register mandate and debit first intalment in one attempt
+- UPI Autopay: Register mandate and debit first instalment in one attempt
