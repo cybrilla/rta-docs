@@ -132,4 +132,4 @@ Fulfillment represents a particular type of transaction (eg. lumpsum). Each item
 ```
 
 ### States
-For state flow refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/draft-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment
+For state flow refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/release-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment

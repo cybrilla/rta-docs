@@ -65,5 +65,5 @@ Payment object represents
 ```
 
 ### States
-For available payment methods and state flow refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/draft-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment
+For available payment methods and state flow refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/release-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment
 

@@ -82,4 +82,4 @@ Order represents a mutual fund transaction. Can be a single transaction or a bas
 ```
 
 ### States
-For order states refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/draft-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment
+For order states refer: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/release-FIS14-2.1.0/api/components/docs/lifecycle-and-states.md#fulfillment

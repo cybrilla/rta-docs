@@ -76,7 +76,7 @@ Sample json
 **Input**: All order details along with the Order ID  
 **Output**: Order in `ACCEPTED` state
 
-Detailed description and sequence diagrams: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/draft-FIS14-2.1.0/api/components/docs/stage-order.md
+Detailed description and sequence diagrams: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/release-FIS14-2.1.0/api/components/docs/stage-order.md
 
 ### Testing in Sandbox
 #### Orders
@@ -95,4 +95,4 @@ Detailed description and sequence diagrams: https://github.com/ONDC-Official/OND
 ## Order Processing
 Once the order is accepted, and pre fulfillment conditions are met (eg. payment collection in case of purchase orders) POA starts the order processing. Processing states are represented in `fulfillment` object.
 
-Detailed description: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/draft-FIS14-2.1.0/api/components/docs/stage-fulfillment.md
+Detailed description: https://github.com/ONDC-Official/ONDC-FIS-Specifications/blob/release-FIS14-2.1.0/api/components/docs/stage-fulfillment.md
