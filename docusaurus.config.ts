@@ -69,7 +69,9 @@ const config: Config = {
       title: "",
       logo: {
         alt: "Cybrilla logo",
-        src: "img/cybrilla-logo-full.webp",
+        src: "img/cybrilla-logo.svg",
+        href: "https://cybrilla.com/",
+        target: "_blank",
       },
       items: [
         {
@@ -79,17 +81,92 @@ const config: Config = {
           label: "Docs",
         },
         {
+          href: "https://cybrilla.com/about",
+          label: "About Us",
+          position: "right",
+        },
+        {
           href: "https://cybrilla.com/careers",
           label: "Careers",
+          position: "right",
+        },
+        {
+          href: "https://cybrilla.com/in-the-news",
+          label: "In The News",
+          position: "right",
+        },
+        {
+          href: "https://cybrilla.com/contact",
+          label: "Contact Us",
           position: "right",
         },
       ],
     },
     footer: {
       style: "dark",
-      links: [],
+      links: [
+        {
+          title: "Explore",
+          items: [
+            {
+              label: "About Us",
+              href: "https://cybrilla.com/about",
+            },
+            {
+              label: "Careers",
+              href: "https://cybrilla.com/careers",
+            },
+          ],
+        },
+        {
+          title: "Legal",
+          items: [
+            {
+              label: "Privacy Policy",
+              href: "https://cybrilla.com/privacy-policy",
+            },
+            {
+              label: "Payment Terms and Refund Policy",
+              href: "https://cybrilla.com/payment-terms-and-refund-policy",
+            },
+            {
+              label: "Terms of Use",
+              href: "https://cybrilla.com/terms-of-use",
+            },
+          ],
+        },
+        {
+          title: "Connect",
+          items: [
+            {
+              label: "Contact Us",
+              href: "https://cybrilla.com/contact",
+            },
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/company/cybrilla-technologies/",
+            },
+          ],
+        },
+        {
+          items: [
+            {
+              html: `
+             <div class="footer__address"><p><span class="highlight-text">Company Name :</span> Cybrilla Technologies Private Limited</p><p><span class="highlight-text">Registered Address:</span> 1660 and 1661, The Millers Autograph 1st Floor 27th Main 2nd Sector HSR Layout, Bengaluru, Karnataka, 560102</p><p><span class="highlight-text">SEBI Registered RTA Number :</span> INR000004404 (Validity of the license : 27th March 2024 - Perpetual)</p><p><span class="highlight-text">CIN :</span> U66190KA2010PTC054206</p></div>
+              `,
+            },
+          ],
+        },
+      ],
+      logo: {
+        alt: "Cybrilla logo",
+        src: "img/cybrilla-logo.svg",
+        href: "https://cybrilla.com/",
+        target: "_blank",
+      },
       copyright: `Copyright © ${new Date().getFullYear()} Cybrilla Technologies Private Limited`,
     },
+
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,

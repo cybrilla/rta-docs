@@ -3,11 +3,25 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  body {
+    @apply m-0 p-0 text-[#333] leading-relaxed;
+    font-family: "Open Sans", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif;
+  }
+}
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
