@@ -45,7 +45,7 @@ While making a `select` call, use that fulfillment id and provide the schedule a
 ```json
 "fulfillments": [
     {
-        "id": "ff_123",
+        "id": "34002",
         // ... other attributes
         "stops": [
             {
