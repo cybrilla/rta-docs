@@ -35,3 +35,29 @@ T = day of sip instalment
 - on `T` day: Actual debit happens, at around 8am
 - on `T+1b` day: Units are allotted on that day's NAV
 - on `T+1b+1c` day: Unit allotment details are available. SMS notification is sent to the investor by the AMC.
+
+## API
+
+In the `on_search` callback, scheme plans supporting daily sip will have a fulfillment of type = `SIP` and `THRESHOLDS.FREQUENCY` tag = `P1D`. 
+
+While making a `select` call, use that fulfillment id and provide the schedule as shown in the example below.
+
+```json
+"fulfillments": [
+    {
+        "id": "ff_123",
+        // ... other attributes
+        "stops": [
+            {
+                "time": {
+                    "schedule": {
+                        "frequency": "R6/2025-05-15/P1D" // 6 instalments, starting 15th May
+                        // Other examples
+                        // `R10/2025-05-15/P1D` - 10 instalments, starting 15th May
+                    }
+                }
+            }
+        ]
+    }
+]
+```
