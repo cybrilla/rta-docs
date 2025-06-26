@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 sidebar_label: Daily SIP
 title: Daily SIP
 ---
@@ -19,15 +19,15 @@ SIP debit happens on the following days:
 **Business Day Daily SIP:** Mon, Tue, Wed, Thu, Fri (currently available)  
 **Calendar Day Daily SIP:** Mon, Tue, Wed, Thu, Fri, Sat, Sun (Coming soon)
 
-## Process (w/ UPI Autopay)
+### Process (w/ UPI Autopay)
 
 T = day of sip instalment  
 
 <ThemedImage
   alt="Daily SIP Process"
   sources={{
-    light: useBaseUrl("/img/daily-sip.svg"),
-    dark: useBaseUrl("/img/daily-sip-dark.svg"),
+    light: useBaseUrl("/img/sip-debits-upiautopay.svg"),
+    dark: useBaseUrl("/img/sip-debits-upiautopay-dark.svg"),
   }}
 />
 
@@ -52,8 +52,6 @@ While making a `select` call, use that fulfillment id and provide the schedule a
                 "time": {
                     "schedule": {
                         "frequency": "R6/2025-05-15/P1D" // 6 instalments, starting 15th May
-                        // Other examples
-                        // `R10/2025-05-15/P1D` - 10 instalments, starting 15th May
                     }
                 }
             }
