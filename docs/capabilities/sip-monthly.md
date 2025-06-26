@@ -14,14 +14,12 @@ import TabItem from '@theme/TabItem';
 `T` = day of registration  
 
 While registering a monthly SIP, you need to provide the following inputs:
-1. First instalment date. It has to be any day on or after `T + 2c`
+1. First instalment date. It has to be any day on or after `T + 2c`. The date should be among the allowed monthly dates for the scheme chosen.
 2. Number of instalments. min/max?
 
 ## Debit Schedule
 
-SIP debit happens on the instalment day, every month as per the provided schedule. If for some reason, POA is not able to debit on the instalment day, it attempts to debit on the following day. Debit will never be attempted before the instalment day.
-
-- If the instalment day is a market holiday?
+SIP debit happens on the instalment day, every month as per the provided schedule. If for some reason, POA is not able to debit on the instalment day, it attempts to debit on the following day. Debit will never be attempted before the instalment day. Even if the instalment day is a market holiday, the debit will still happen.
 
 ### Process
 
