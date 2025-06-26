@@ -47,7 +47,8 @@ T = day of sip instalment
         <ThemedImage
         alt="SIP Debit process with NACH Mandate"
         sources={{
-            light: useBaseUrl("/img/sip-debits-nach.svg")
+            light: useBaseUrl("/img/sip-debits-nach.svg"),
+            dark: useBaseUrl("/img/sip-debits-nach-dark.svg")
         }}
         />
 
