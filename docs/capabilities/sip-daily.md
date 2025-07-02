@@ -36,6 +36,14 @@ T = day of sip instalment
 - on `T+1b` day: Units are allotted on that day's NAV
 - on `T+1b+1c` day: Unit allotment details are available. SMS notification is sent to the investor by the AMC.
 
+## Cancellation
+You can cancel a SIP anytime when the fulfillment is in `PENDING` OR `ONGOING` states.
+
+When cancelled
+1. No future instalments will be generated
+2. Instalments already generated but waiting for the payment debit - will have no impact (the debit will happen as per the schedule)
+3. Instalments already generated and payment debit happened - will have no impact (units will be allotted after processing)
+
 ## API
 
 In the `on_search` callback, scheme plans supporting daily sip will have a fulfillment of type = `SIP` and `THRESHOLDS.FREQUENCY` tag = `P1D`. 
