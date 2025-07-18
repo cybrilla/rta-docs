@@ -8,12 +8,13 @@ import SupportIcon from "@site/static/img/support.svg";
 import TickIcon from "@site/static/img/tick.svg";
 import "./styles.css";
 import { Accordion } from "../components/accordion";
+import HomeCustomFooter from "../components/HomeCustomFooter";
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout>
-      <div className="poa-wrapper">
+    <Layout noFooter>
+      <div className="poa-wrapper custom-home-page">
         <div className="hero container">
           <div className="hero-content">
             <h1>Simplify mutual fund distribution with Cybrilla</h1>
@@ -389,6 +390,7 @@ export default function Home(): JSX.Element {
           </div>
         </div>
       </div>
+      <HomeCustomFooter />
     </Layout>
   );
 }
