@@ -1,10 +1,8 @@
 ---
 sidebar_position: 3
-sidebar_label: API
-title: API
+sidebar_label: Transaction API
+title: Transaction API
 ---
-
-# API
 
 POA endpoints, for `action` calls: `/search`, `/select`, `/init`, `/confirm`, `/status`, `/update`  
 Your endpoints for `on_action` callbacks: `/on_search`, `/on_select`, `/on_init`, `/on_confirm`, `/on_status`, `/on_update`

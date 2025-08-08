@@ -1,11 +1,8 @@
 ---
-sidebar_position: 4
-sidebar_label: Pre Verification
-title: Pre Verification
+sidebar_position: 2
+sidebar_label: Pre Verification API
+title: Pre Verification API
 ---
-
-
-# Pre Verification
 
 The Pre Verification API lets a partner verify certain demographic information of the investor even before placing the order so that such verifications can be skipped during order processing. At present, the following investor information can be pre-verified. 
 1. Readiness of investor to invest (i.e whether the investor is KRA compliant to invest in MF)

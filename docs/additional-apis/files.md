@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
-sidebar_label: Files
-title: Files
+sidebar_label: Files API
+title: Files API
 ---
 
-## API to Upload Files to POA
+**Endpoints**  
 
 `POST /poa/files`
 
