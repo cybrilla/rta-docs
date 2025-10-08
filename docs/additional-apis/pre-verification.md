@@ -69,7 +69,7 @@ The Pre Verification API lets a partner verify certain demographic information o
                 "account_number": "92001091194",
                 "ifsc_code": "UTIB0003093",
                 "account_type": "nre_savings",
-                "bank_account_proof": "file_e55ddbad95120si09153a7b1eb68fc01"
+                "bank_account_proof": "file_e55ddbad95120si0a9153a7b1eb68fc01"
             }
         }
     ],
