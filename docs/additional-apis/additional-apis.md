@@ -8,7 +8,7 @@ title: Additional APIs
 
 In addition to Orders APIs that conform to ONDC protocols, Cybrilla POA also offers additional APIs for AMC partners(i.e. distributors and advisors) to deliver certain value added services. These APIs have to be authenticated separately and a separate credentials are issued for the same.
 
-|API|Environment|Base Url|
+|API|Environment|Base URL|
 |---|---|---|
 |Authentication APIs*|Sandbox|https://s.finprim.com|
 |All other APIs|Sandbox|https://api.sandbox.cybrilla.com|
