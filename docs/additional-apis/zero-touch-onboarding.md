@@ -8,7 +8,7 @@ The Zero Touch Onboarding APIs lets a partner to attempt fetching certain detail
 1. Bank Account Lookup API
 2. Customer Data Lookup API
 
-## Bank account lookup
+## Bank Account Lookup API
 
 The Bank account lookup API lets a partner fetch the bank account details of the investor that is registered against the primary VPA / UPI ID.
 
