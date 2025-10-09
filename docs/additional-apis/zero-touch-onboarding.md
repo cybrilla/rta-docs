@@ -214,3 +214,8 @@ curl --location '{{base_url}}/v2/customer_data_lookups/:id' \
 |id|yes|string|ID of the `customer_data_lookup` object|
 
 > **NOTE:** The `customer_data_lookup` object will be returned as the response.
+
+<br/>
+---
+
+> **NOTE:** Both these APIs **attempt** to fetch data from third-party sources provided they are available. Once data is fetched, accuracy isn’t validated. We strongly advise you to share the information with the investor and proceed only after their approval.
