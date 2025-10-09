@@ -99,14 +99,14 @@ The Pre Verification API lets a partner verify certain demographic information o
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`upstream_error`: There was an error contacting upstream to check readiness <br/>3.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
+|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor's KYC is verified/registered and Aadhaar is not linked to this record. Investor has to raise a modification request to set this right<br/>3.`upstream_error`: There was an error contacting upstream to check readiness<br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### Bank Accounts hash
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest<br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1.`awaiting_approval_for_manual_verification_with_proof` - This bank account needs a  manual verification along with an associated bank account proof along with the approval for manual verification<br/>2. `bank_account_proof_required` This bank account needs a manual verification and in order to initiate it, the bank account proof should be provided|
+|code|string|1.`awaiting_approval_for_manual_verification_with_proof`: This bank account needs a  manual verification along with an associated bank account proof along with the approval for manual verification<br/>2. `bank_account_proof_required`: This bank account needs a manual verification and in order to initiate it, the bank account proof should be provided<br/>3.`digital_verification_failure`: The workflow to verify this bank account failed. You need to retry|
 |value.account_number|string|Bank account number|
 |value.ifsc_code|string|IFSC code associated with the bank account|
 |value.account_type|string|Bank account type|
