@@ -111,7 +111,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 |readiness|hash|The hash representing whether the investor is ready to invest in MF|
 |name|hash|Name of the investor|
 |pan|hash|Pan of the investor|
-|date_of_birth|Investor's date of birth|
+|date_of_birth|hash|Investor's date of birth|
 |bank_accounts|array|Array of bank accounts|
 |created_at|string|Preverification creation timestamp|
 |completed_at|string|If preverification is completed, the completion timestamp.|
