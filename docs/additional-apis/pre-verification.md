@@ -7,6 +7,7 @@ title: Pre Verification API
 The Pre Verification API lets a partner verify certain demographic information of the investor even before placing the order so that such verifications can be skipped during order processing. At present, the following investor information can be pre-verified. 
 1. Readiness of investor to invest (i.e whether the investor is KRA compliant to invest in MF)
 2. Bank Account 
+3. PAN validation [PAN, Name and Date of birth]
 
 
 ## Workflow to verify investor's readiness to invest
@@ -17,7 +18,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 5. Else if `readiness.status = failed`, it means the investor is not yet ready to invest. Refer to `readiness.code` to understand why the investor is not ready.
 6. If `readiness.status = failed` and `readiness.code = kyc_unavailable`, then it means that there is no KYC record available for this investor, at any of the KRAs. In these cases, use `KYC Request` feature to submit a fresh KYC application.
 
-## Workflow to verify investor's bank accounts
+## Workflow to perform investor's bank accounts
 1. Create a Pre Verification request by providing `pan`, `name` and the list of `bank_accounts` that have to be verified. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the bank account verifications are attempted. You can use the `status` attribute to check the state of Pre Verification.
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
 3. If `status` is `completed`, it means there is a result available.
@@ -35,6 +36,20 @@ The Pre Verification API lets a partner verify certain demographic information o
 1. Always attempt the bank account verifications WITHOUT giving the `bank_account_proof` and the consent - `verify_manually_if_required` as `true`. This is due to the reason that manual verification of bank acccount is costly and should be attempted only if Pre Verification suggests you to do it. 
 2. Once Pre Verification lets you know that the particular bank account has to be manually verified, you can continue to provide the `bank_account_proof` and `verify_manually_if_required` flag as `true` in a new Pre Verification request so that the manual verification would be internally triggered.
 
+
+## Workflow to complete investor's PAN validation [PAN, Name and Date of birth]
+1. Create a Pre Verification request by providing investor's `pan`, `name` and `date_of_birth`. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the pan validation is initiated. You can use the `status` attribute to check the state of Pre Verification.
+2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
+3. If `status` is `completed`, it means there is a result available.
+4. At this stage, if `pan.status = verified`, it means the investor's PAN number exists and it is valid.  
+4.1. Else if `pan.status = failed`, it means the investor's PAN number is not suitable to be used. Refer to `pan.code` to understand more. 
+4.2. If `pan.status = failed` and `pan.code = invalid`, it means that the PAN number is either non-existent or invalid
+4.3. If `pan.status = failed` and `pan.code = aadhaar_not_linked`, it means investor's Aadhaar is not seeded with the PAN record.
+5. At this stage, if `name.status = verified`, it means the investor's name matches with the PAN records at IT Department.  
+5.1. Else if `name.status = failed`, it means the investor's does not match with the PAN records and hence not suitable to be used. Refer to `name.code` to understand more. Possible value for `name.code` is `mismatch`.
+6. At this stage, if `date_of_birth.status = verified`, it means the investor's date-of-birth matches with the PAN records at IT Department.  
+6.1. Else if `date_of_birth.status = failed`, it means the investor's date-of-birth does not match with the PAN records and hence not suitable to be used. Refer to `date_of_birth.code` to understand more. Possible value for `date_of_birth.code` is `mismatch`.
+
 ## Pre Verification Object
 
 ```json
@@ -49,16 +64,22 @@ The Pre Verification API lets a partner verify certain demographic information o
         "reason": null
     },
     "name": {
-        "status": null,
+        "status": "verified",
         "code": null,
         "reason": null,
         "value": "Seetharam S"
     },
     "pan": {
-        "status": null,
+        "status": "verified",
         "code": null,
         "reason": null,
         "value": "GYAPS3751D"
+    },
+    "date_of_birth": {
+        "status": "verified",
+        "code": null,
+        "reason": null,
+        "value": "1992-09-12"
     },
     "bank_accounts": [
         {
@@ -90,6 +111,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 |readiness|hash|The hash representing whether the investor is ready to invest in MF|
 |name|hash|Name of the investor|
 |pan|hash|Pan of the investor|
+|date_of_birth|Investor's date of birth|
 |bank_accounts|array|Array of bank accounts|
 |created_at|string|Preverification creation timestamp|
 |completed_at|string|If preverification is completed, the completion timestamp.|
@@ -100,6 +122,27 @@ The Pre Verification API lets a partner verify certain demographic information o
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
 |code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`upstream_error`: There was an error contacting upstream to check readiness <br/>3.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
+|reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
+
+### Name hash
+|Attribute|Type|Remarks|
+|---|---|---|
+|status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
+|code|string|1. `mismatch`: Investor cannot invest because the name does not match with the PAN records at IT department|
+|reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
+
+### PAN hash
+|Attribute|Type|Remarks|
+|---|---|---|
+|status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
+|code|string|1. `invalid`: Investor cannot invest because the given PAN number is either invalid or non-existent<br/>2.`aadhaar_not_linked`: Investor cannot invest because investor's Aadhaar is not seeded with PAN record|
+|reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
+
+### Date of birth hash
+|Attribute|Type|Remarks|
+|---|---|---|
+|status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
+|code|string|1. `mismatch`: Investor cannot invest because the date of birth does not match with the PAN records at IT department|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### Bank Accounts hash
@@ -129,6 +172,9 @@ curl --location '{{base_url}}/poa/pre_verifications' \
     "name": {
         "value": "Seetharam S"
     },
+    "date_of_birth": {
+        "value": "1992-09-12"
+    },
     "bank_accounts": [       
         {
             "value": {
@@ -148,8 +194,9 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 |Name|Mandatory|Type|Comments|
 |-|-|-|-|
 |investor_identifier|no|string|Investor identifier. Currently only PAN number of the investor is supported<br/><br/>- Mandatory to check `Readiness of the investor to invest`|
-|pan.value|no|hash|- Mandatory if `bank_accounts` is present with one of the `bank_account.account_type` being `savings` or `current`<br/>- Optional if `bank_accounts` is present with one of the `bank_account.account_type` as `nre_savings` or `nre_current`|
-|name.value|no|hash|- Mandatory for bank account verification|
+|pan.value|no|hash|- Mandatory for PAN validation<br/>- Mandatory if `bank_accounts` is present with one of the `bank_account.account_type` being `savings` or `current`<br/>- Optional if `bank_accounts` is present with one of the `bank_account.account_type` as `nre_savings` or `nre_current`|
+|name.value|no|hash|- Mandatory for PAN validation<br/>- Mandatory for bank account verification|
+|date_of_birth.value|no|hash|- Mandatory for PAN validation|
 |bank_accounts|no|array|Array of `bank_account` hashes<br/><br/>- Mandatory for bank account verification|
 
 #### Bank account hash
@@ -166,6 +213,10 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 ### Note on NRI bank account verifications
 - Currently, you can only attempt Pre Verification of `nre_savings` and `nro_savings` bank accounts
 - All the NRI bank accounts will be manually verified as of now
+
+### Note on PAN validation
+- You need to provide `pan`, `name` and `date_of_birth` to trigger a PAN validation
+- As a part of this process, investor's PAN, name and date of birth will be verified individually
 
 ### Note on Pre Verification object events 
 - Events are triggered upon `status` changes that happen on `pre_verification` object.
