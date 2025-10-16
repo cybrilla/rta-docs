@@ -38,7 +38,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 
 
 ## Workflow to complete investor's PAN validation [PAN, Name and Date of birth]
-1. Create a Pre Verification request by providing investor's `pan`, `name` and `date_of_birth`. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the pan validation is initiated. You can use the `status` attribute to check the state of Pre Verification.
+1. Create a Pre Verification request by providing investor's `pan`, `name` and `date_of_birth`. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the pan validation is initiated, which will verify investor's PAN number, name and date of birth as on PAN records. You can use the `status` attribute to check the state of Pre Verification.
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
 3. If `status` is `completed`, it means there is a result available.
 4. At this stage, if `pan.status = verified`, it means the investor's PAN number exists and it is valid.  
@@ -243,3 +243,25 @@ curl --location '{{base_url}}/poa/pre_verifications/:id' \
 |id|yes|string|ID of the `pre_verification` object|
 
 > The `pre_verification` object will be returned as the response.
+
+---
+
+## Testing
+
+In sandbox, simulation facility can be used to test pre verifications. This facility is only available in sandbox.
+
+### Readiness and bank account verification
+You can use the same testing scenarios present in KYC Check section. [Here](https://docs.fintechprimitives.com/identity/kyc-check/#testing) is the link to that.
+
+### Bank account verification
+You can use the same testing scenarios present in Verify bank account section. [Here](https://docs.fintechprimitives.com/identity/verification/perform-bank-account-verification/#testing) is the link to that.
+
+### PAN validation
+|Scenario|PAN format|Name|Date of birth|Description|
+|-|-|-|-|-|
+|Valid PAN|XXXPX3751X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`|
+|Aadhaar not seeded with PAN|XXXPX3752X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any combination of `name` and `date_of_birth`|
+|Name mismatch|_anything_|Lord Voldemort|_anything_|If the given `name` matches this pattern, it would mean that the name is a mismatch with the name present on the ITD database for the given PAN number|
+|Date of birth mismatch|_anything_|_anything_|2000-01-01|If the given `date_of_birth` matches this pattern, it would mean that the date of birth is a mismatch with the name present on the ITD database for the given PAN number|
+
+> **NOTE:** While testing, you can use different variations of these PAN validation to build your usecases as needed.
