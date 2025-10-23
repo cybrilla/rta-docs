@@ -67,7 +67,7 @@ title: Payments
 | SBM Bank | STCB | Yes | yes |
 | South Indian Bank | SIBL | Yes | Yes |
 | Standard Chartered Bank | SCBL | Yes | Yes |
-| State Bank of India | SBIN | Yes | Yes |
+| State Bank of India | SBIN | No | Yes |
 | Surat Bank | SPCB | Yes | No |
 | SURYODAY SMALL FINANCE BANK LTD | SURY | No | Yes |
 | Sutex Bank | SUTB | Yes | No |
