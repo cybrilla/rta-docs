@@ -30,7 +30,6 @@ title: Capabilities
 
 ### Available Mutual Funds
 - Aditya Birla Sun life Mutual Fund
-- TATA Mutual Fund
 - Capitalmind Mutual Fund
 - Bandhan Mutual Fund
 - UTI Mutual Fund
