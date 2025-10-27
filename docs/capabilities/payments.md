@@ -8,15 +8,24 @@ title: Payments
 
 ## Payment modes and their settlement TATs
 
-| Payment Modes | Day of Debit to   Investor's Account | Day of Unit   allotment | Remarks |
+| Payment Modes | Day of Debit to Investor's Account | Day of Unit allotment | Remarks |
 | --- | --- | --- | --- |
-| Netbanking/UPI   (Basket orders) | T | T+1 |  |
-| Netbanking/UPI   (single order payments) | T | T/T+1 | \- Dependent on Scheme   cut-off time   \- Varies from AMC to AMC |
+| Netbanking/UPI (Basket orders) | T | T+1 |  |
+| Netbanking/UPI (single order payments) | T | T/T+1 | - If order placed before cut-off time, then T day NAV, else T+1 day NAV.<br />- Dependent on AMC support of banks.<br />Please refer to Same-day settlement supported banks per AMC. |
 | UPI Autopay | T | T+1 |  |
 | eNACH Mandate | T | T+1 |  |
 
 
-## Netbanking and eNACH supported banks
+
+> Note: 
+- Cut-off for liquid funds is 1:15PM and for non-liquid funds is 2:45PM. 
+- NAV applicability is subject to realisation of funds in AMC collection account.
+- NAV is only applicable on a market working day.
+
+
+## eNACH and Basket order Netbanking supported banks
+
+The following table lists the banks that support Netbanking payments for basket orders for lumpsum transactions and eNACH mandate authorizations via Netbanking.
 
 | Bank Name | IFSC Identifier | Netbanking supported | Enach supported |
 | --- | --- | --- | --- |
@@ -81,3 +90,27 @@ title: Payments
 | Union Bank of India | UBIN | Yes | Yes |
 | Utkarsh Bank | UTKS | Yes | No |
 | Yes Bank | YESB | Yes | Yes |
+
+## Same-day settlement supported banks per AMC
+Same-day NAV is applicable only when payments are made through UPI (if supported by the AMC) or through Netbanking via the banks supported by the respective AMC, as detailed in the table below.
+
+| AMC Name | UPI supported | Netbanking supported |
+| --- | --- | --- |
+| Aditya Birla Sun life Mutual Fund | Yes | HDFC Bank<br />IDFC FIRST Bank<br />Kotak Bank<br />State Bank of India<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
+| TATA Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd |
+| UTI Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Bandhan Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Edelweiss Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| The Wealth Company Mutual Fund | Yes | HDFC Bank<br />Axis Bank<br />ICICI Bank |
+| JM Financial Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Motilal Oswal Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd |
+| Capitalmind Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
+| Quantum Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| DSP Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Kotak Mahindra Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| ICICI Prudential Mutual Fund | No | State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
+| Axis Mutual Fund | Yes | Kotak Bank<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank<br />State Bank Of India |
+| Quant Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDFC FIRST Bank |
+| Nippon India Mutual Fund AMC | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| HDFC Mutual Fund AMC | No | Kotak Bank<br />HDFC Bank<br />ICICI Bank<br />IDBI Bank<br />IDFC FIRST Bank<br />State Bank of India<br />Axis Bank<br />Yes Bank Ltd |
+| 360 One Mutual Fund | No | Kotak Bank<br />ICICI Bank<br />IDFC FIRST Bank<br />IndusInd Bank<br />Axis Bank Ltd |
