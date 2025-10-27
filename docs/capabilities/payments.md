@@ -29,27 +29,27 @@ The following table lists the banks that support Netbanking payments for basket 
 
 | Bank Name | IFSC Identifier | Netbanking supported | Enach supported |
 | --- | --- | --- | --- |
-| AIRTEL PAYMENTS BANK LTD | AIRP | No | Yes |
-| ANDHRA PRAGATHI GRAMEENA BANK | APGB | No | Yes |
+| Airtel Payments Bank Ltd | AIRP | No | Yes |
+| Andhra Pragathi Grameena Bank | APGB | No | Yes |
 | AU Small Finance Bank | AUBL | Yes | Yes |
 | Axis Bank | UTIB | Yes | Yes |
 | Bandhan Bank | BDBL | Yes | Yes |
-| Bank of Baroda- Retail | BARB | Yes | Yes |
-| Bank of India- Retail | BKID | Yes | No |
+| Bank of Baroda - Retail | BARB | Yes | Yes |
+| Bank of India - Retail | BKID | Yes | No |
 | Bank of Maharashtra | MAHB | Yes | Yes |
 | Canara Bank | CNRB | Yes | Yes |
-| CAPITAL SMALL FINANCE BANK LTD | CLBL | Yes | No |
+| Capital Small Finance Bank Ltd | CLBL | Yes | No |
 | Central Bank of India | CBIN | Yes | Yes |
-| CITI BANK | CITI | No | Yes |
+| Citi Bank | CITI | No | Yes |
 | City Union Bank | CIUB | Yes | Yes |
 | Cosmos Bank | COSB | Yes | Yes |
-| CSB BANK LTD | CSBK | No | Yes |
-| DBS BANK INDIA LTD | DBSS | No | Yes |
-| DCB BANK LTD | DCBL | No | Yes |
+| CSB Bank Ltd | CSBK | No | Yes |
+| DBS Bank India Ltd | DBSS | No | Yes |
+| DCB Bank Ltd | DCBL | No | Yes |
 | Deutsche Bank | DEUT | Yes | Yes |
 | Dhanalaxmi Bank | DLXB | Yes | Yes |
-| EQUITAS SMALL FINANCE BANK LTD | ESFB | No | Yes |
-| ESAF Small Finance Bank Limited | ESMF | No | Yes |
+| Equitas Small Finance Bank Ltd | ESFB | No | Yes |
+| ESAF Small Finance Bank Ltd | ESMF | No | Yes |
 | Federal Bank | FDRL | Yes | Yes |
 | Gujarat State Cooperative Bank | GSCB | Yes | No |
 | HDFC Bank | HDFC | Yes | Yes |
@@ -59,37 +59,38 @@ The following table lists the banks that support Netbanking payments for basket 
 | IDFC Bank | IDFB | Yes | Yes |
 | Indian Bank | IDIB | Yes | Yes |
 | Indian Overseas Bank | IOBA | Yes | Yes |
-| Indusind Bank | INDB | Yes | Yes |
+| IndusInd Bank | INDB | Yes | Yes |
 | Jana Small Finance Bank | JSFB | Yes | Yes |
-| JIO PAYMENTS BANK LTD | JIOP | No | Yes |
-| KARNATAKA BANK LTD | KARB | No | Yes |
-| KARNATAKA VIKAS GRAMEENA BANK | KVGB | No | Yes |
-| Karur Vysya Bank Limited | KVBL | Yes | Yes |
+| Jio Payments Bank Ltd | JIOP | No | Yes |
+| Karnataka Bank Ltd | KARB | No | Yes |
+| Karnataka Vikas Grameena Bank | KVGB | No | Yes |
+| Karur Vysya Bank Ltd | KVBL | Yes | Yes |
 | Kerala Gramin Bank | KLGB | Yes | No |
 | Kotak Mahindra Bank | KKBK | Yes | Yes |
-| NSDL PAYMENTS BANKS LTD | NSPB | No | Yes |
-| PAYTM PAYMENTS BANK LTD | PYTM | No | Yes |
+| NSDL Payments Bank Ltd | NSPB | No | Yes |
+| Paytm Payments Bank Ltd | PYTM | No | Yes |
 | Punjab and Sind Bank | PSIB | Yes | Yes |
 | Punjab National Bank | PUNB | Yes | Yes |
-| RBL BANK LTD | RATN | No | Yes |
+| RBL Bank Ltd | RATN | No | Yes |
 | Saraswat Bank | SRCB | Yes | No |
-| SBM Bank | STCB | Yes | yes |
+| SBM Bank | STCB | Yes | Yes |
 | South Indian Bank | SIBL | Yes | Yes |
 | Standard Chartered Bank | SCBL | Yes | Yes |
 | State Bank of India | SBIN | No | Yes |
 | Surat Bank | SPCB | Yes | No |
-| SURYODAY SMALL FINANCE BANK LTD | SURY | No | Yes |
+| Suryoday Small Finance Bank Ltd | SURY | No | Yes |
 | Sutex Bank | SUTB | Yes | No |
-| TAMILNAD MERCANTILE BANK LTD | TMBL | No | Yes |
-| THE AKOLA URBAN CO OP BANK LTD | TAUB | No | Yes |
-| THE JAMMU AND KASHMIR BANK LTD | JAKA | No | Yes |
-| THE NATIONAL CO OP BANK LTD | SRCB | No | Yes |
-| THE VARACHHA CO OP BANK LTD | VARA | No | Yes |
-| UCO Bank | UCBA | Yes | yes |
+| Tamilnad Mercantile Bank Ltd | TMBL | No | Yes |
+| The Akola Urban Co-op Bank Ltd | TAUB | No | Yes |
+| The Jammu and Kashmir Bank Ltd | JAKA | No | Yes |
+| The National Co-op Bank Ltd | SRCB | No | Yes |
+| The Varachha Co-op Bank Ltd | VARA | No | Yes |
+| UCO Bank | UCBA | Yes | Yes |
 | Ujjivan Bank | UJVN | Yes | Yes |
 | Union Bank of India | UBIN | Yes | Yes |
 | Utkarsh Bank | UTKS | Yes | No |
 | Yes Bank | YESB | Yes | Yes |
+
 
 ## Same-day settlement supported banks per AMC
 Same-day NAV is applicable only when payments are made through UPI (if supported by the AMC) or through Netbanking via the banks supported by the respective AMC, as detailed in the table below.
