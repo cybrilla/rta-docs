@@ -16,8 +16,8 @@ T+2c = start of instalments
 
 SIP debit happens on the following days:  
 
-**Business Day Daily SIP:** Mon, Tue, Wed, Thu, Fri (currently available)  
-**Calendar Day Daily SIP:** Mon, Tue, Wed, Thu, Fri, Sat, Sun (Coming soon)
+**Business Day Daily SIP:** Mon, Tue, Wed, Thu, Fri  
+**Calendar Day Daily SIP:** Mon, Tue, Wed, Thu, Fri, Sat, Sun
 
 ### Process (w/ UPI Autopay)
 
@@ -46,9 +46,11 @@ When cancelled
 
 ## API
 
-In the `on_search` callback, scheme plans supporting daily sip will have a fulfillment of type = `SIP` and `THRESHOLDS.FREQUENCY` tag = `P1D`. 
+In the `on_search` callback, scheme plans supporting daily sip will have fulfillments of type = `SIP` and `THRESHOLDS.FREQUENCY` tag = `P1D` with the following variations
+- For Business day Daily SIP: `THRESHOLDS.FREQUENCY_DAY_TYPE` tag = `BUSINESS`
+- For Calendar day Daily SIP: `THRESHOLDS.FREQUENCY_DAY_TYPE` tag = `CALENDAR`
 
-While making a `select` call, use that fulfillment id and provide the schedule as shown in the example below.
+While making a `select` call, use the appropriate fulfillment id and provide the schedule as shown in the example below.
 
 ```json
 "fulfillments": [
