@@ -17,6 +17,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 4. At this stage, if `readiness.status = verified`, it means the investor is ready to invest. You can go ahead and accept the investments from such investors.
 5. Else if `readiness.status = failed`, it means the investor is not yet ready to invest. Refer to `readiness.code` to understand why the investor is not ready.
 6. If `readiness.status = failed` and `readiness.code = kyc_unavailable`, then it means that there is no KYC record available for this investor, at any of the KRAs. In these cases, use `KYC Request` feature to submit a fresh KYC application.
+7. If `readiness.status = failed` and `readiness.code = upstream_error`, then retry the request
 
 ## Workflow to perform investor's bank accounts
 1. Create a Pre Verification request by providing `pan`, `name` and the list of `bank_accounts` that have to be verified. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the bank account verifications are attempted. You can use the `status` attribute to check the state of Pre Verification.
@@ -49,6 +50,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 5.1. Else if `name.status = failed`, it means the investor's does not match with the PAN records and hence not suitable to be used. Refer to `name.code` to understand more. Possible value for `name.code` is `mismatch`.
 6. At this stage, if `date_of_birth.status = verified`, it means the investor's date-of-birth matches with the PAN records at IT Department.  
 6.1. Else if `date_of_birth.status = failed`, it means the investor's date-of-birth does not match with the PAN records and hence not suitable to be used. Refer to `date_of_birth.code` to understand more. Possible value for `date_of_birth.code` is `mismatch`.
+7. If `pan.status = failed and pan.code = upstream_error` or `name.status = failed and name.code = upstream_error` or `date_of_birth.status = failed and date_of_birth.code = upstream_error`, then retry the PAN validation again.
 
 ## Pre Verification Object
 
@@ -121,28 +123,28 @@ The Pre Verification API lets a partner verify certain demographic information o
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`upstream_error`: There was an error contacting upstream to check readiness <br/>3.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
+|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor cannot investor because his KYC record is incomplete. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>3.`upstream_error`: There was an error contacting upstream to check readiness <br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### Name hash
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `mismatch`: Investor cannot invest because the name does not match with the PAN records at IT department|
+|code|string|1. `mismatch`: Investor cannot invest because the name does not match with the PAN records at IT department<br/>2. `upstream_error`: There was an error contacting upstream to verify name|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### PAN hash
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `invalid`: Investor cannot invest because the given PAN number is either invalid or non-existent<br/>2.`aadhaar_not_linked`: Investor cannot invest because investor's Aadhaar is not seeded with PAN record|
+|code|string|1. `invalid`: Investor cannot invest because the given PAN number is either invalid or non-existent<br/>2.`aadhaar_not_linked`: Investor cannot invest because investor's Aadhaar is not seeded with PAN record<br/>3. `upstream_error`: There was an error contacting upstream to verify PAN|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### Date of birth hash
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `mismatch`: Investor cannot invest because the date of birth does not match with the PAN records at IT department|
+|code|string|1. `mismatch`: Investor cannot invest because the date of birth does not match with the PAN records at IT department<br/>2. `upstream_error`: There was an error contacting upstream to verify date of birth|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 ### Bank Accounts hash
