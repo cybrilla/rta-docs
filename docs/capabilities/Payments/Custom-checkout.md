@@ -15,13 +15,46 @@ To build a seamless checkout experience for **UPI Lumpsum Payments** and **UPI A
 For **Intent** and **QR** options, use the **UPI URI** returned in the API response.
 
 
-## 1. UPI Intent Flow
+## 1. UPI Intent Flow for lumpsum
 
 ### Android Default Behaviour 
 
 When the URI (e.g., `upi://pay?...`) is opened on Android:
 - The OS automatically shows a list of installed UPI-supported apps.
 - The investor can select the desired app to complete the transaction.
+
+#### App-Specific UPI URI Formats for lumpsum:
+
+You can modify the base UPI URI to open a specific app directly. Below are example schemes for reference. Please test and verify before using in production.
+
+App URI schemes may change over time. Confirm the latest schemes from app developer docs and test on real devices.
+
+| App Name             | Scheme Prefix Change                  | Final Prefix Used      | What Changed?                                                 |
+| -------------------- | ------------------------------------- | ---------------------- | ------------------------------------------------------------- |
+| **PhonePe**          | `upi://pay?` → `phonepe://pay?`       | `phonepe://pay?`       | Replace `upi` with `phonepe`                                  |
+| **Google Pay**       | `upi://pay?` → `tez://upi/pay?`       | `tez://upi/pay?`       | Change scheme to `tez://` and add `/upi` path before `pay?`   |
+| **Paytm**            | `upi://pay?` → `paytmmp://pay?`       | `paytmmp://pay?`       | Replace `upi` with `paytmmp`                                  |
+| **Navi**             | `upi://pay?` → `navipay://pay?`       | `navipay://pay?`       | Replace `upi` with `navipay`                                  |
+| **Super.money**      | `upi://pay?` → `super://pay?`         | `super://pay?`         | Replace `upi` with `super`                                    |
+| **CRED**             | `upi://pay?` → `credpay://upi/pay?`   | `credpay://upi/pay?`   | Change scheme to `credpay://` and insert `/upi` before `pay?` |
+| **BHIM**             | `upi://pay?` → `bhim://pay?`          | `bhim://pay?`          | Replace `upi` with `bhim`                                     |
+| **Amazon Pay**       | `upi://pay?` → `amazonpay://upi/pay?` | `amazonpay://upi/pay?` | Change scheme to `amazonpay://` and add `/upi` before `pay?`  |
+| **Others (Default)** | No change                             | `upi://pay?`           | Generic UPI scheme                                            |
+
+#### App-Specific UPI URI Formats for Autopay authorisation:
+Similarly you can modify the UPI URI for UPI Autopay as well to open a specific app directly. Below are example schemes for reference. Please test and verify before using in production.
+
+| App Name             | Scheme Prefix Change                        | Final Prefix Used        | What Changed?                                                     |
+| -------------------- | ------------------------------------------- | ------------------------ | ----------------------------------------------------------------- |
+| **PhonePe**          | `upi://mandate?` → `phonepe://mandate?`     | `phonepe://mandate?`     | Replace `upi` with `phonepe`                                      |
+| **Google Pay**       | `upi://mandate?` → `tez://upi/mandate?`     | `tez://upi/mandate?`     | Change scheme to `tez://` and insert `/upi` before `mandate?`     |
+| **Paytm**            | `upi://mandate?` → `paytmmp://mandate?`     | `paytmmp://mandate?`     | Replace `upi` with `paytmmp`                                      |
+| **Navi**             | `upi://mandate?` → `navipay://mandate?`     | `navipay://mandate?`     | Replace `upi` with `navipay`                                      |
+| **Super.money**      | `upi://mandate?` → `super://mandate?`       | `super://mandate?`       | Replace `upi` with `super`                                        |
+| **CRED**             | `upi://mandate?` → `credpay://upi/mandate?` | `credpay://upi/mandate?` | Change scheme to `credpay://` and insert `/upi` before `mandate?` |
+| **BHIM**             | `upi://mandate?` → `bhim://mandate?`        | `bhim://mandate?`        | Replace `upi` with `bhim`                                         |
+| **Others (Default)** | No change                                   | `upi://mandate?`         | Generic UPI scheme                                                |
+
 
 ### iOS Default Behaviour 
 
@@ -35,16 +68,30 @@ You can modify the base UPI URI to open a specific app directly. Below are examp
 
 App URI schemes may change over time. Confirm the latest schemes from app developer docs and test on real devices.
 
-| App Name | Example URI |
-| --- | --- |
-| **PhonePe** | phonepe://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **Google Pay** | tez://upi/mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **Paytm** | paytmmp://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **Navi** | navipay://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **Super.money** | super://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **CRED** | credpay://upi/mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **BHIM** | bhim://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
-| **Others (default)** | upi://mandate?pa=cybrillatechpl.bdsi@icici&pn=CYBRILLA&am=99.00&cu=INR&tr=EZM2025102411135602145429&... |
+| App Name             | Scheme Prefix Change                  | Final Prefix Used      | What Changed?                                                 |
+| -------------------- | ------------------------------------- | ---------------------- | ------------------------------------------------------------- |
+| **PhonePe**          | `upi://pay?` → `phonepe://pay?`       | `phonepe://pay?`       | Replace `upi` with `phonepe`                                  |
+| **Google Pay**       | `upi://pay?` → `tez://upi/pay?`       | `tez://upi/pay?`       | Change scheme to `tez://` and add `/upi` path before `pay?`   |
+| **Paytm**            | `upi://pay?` → `paytmmp://pay?`       | `paytmmp://pay?`       | Replace `upi` with `paytmmp`                                  |
+| **Super.money**      | `upi://pay?` → `super://pay?`         | `super://pay?`         | Replace `upi` with `super`                                    |
+| **CRED**             | `upi://pay?` → `credpay://upi/pay?`   | `credpay://upi/pay?`   | Change scheme to `credpay://` and insert `/upi` before `pay?` |
+| **BHIM**             | `upi://pay?` → `bhim://pay?`          | `bhim://pay?`          | Replace `upi` with `bhim`                                     |
+| **Amazon Pay**       | `upi://pay?` → `amazonpay://upi/pay?` | `amazonpay://upi/pay?` | Change scheme to `amazonpay://` and add `/upi` before `pay?`  |
+                                        |
+
+#### App-Specific UPI URI Formats for Autopay authorisation:
+Similarly you can modify the UPI URI for UPI Autopay as well to open a specific app directly. Below are example schemes for reference. Please test and verify before using in production.
+
+| App Name             | Scheme Prefix Change                        | Final Prefix Used        | What Changed?                                                     |
+| -------------------- | ------------------------------------------- | ------------------------ | ----------------------------------------------------------------- |
+| **PhonePe**          | `upi://mandate?` → `phonepe://mandate?`     | `phonepe://mandate?`     | Replace `upi` with `phonepe`                                      |
+| **Google Pay**       | `upi://mandate?` → `tez://upi/mandate?`     | `tez://upi/mandate?`     | Change scheme to `tez://` and insert `/upi` before `mandate?`     |
+| **Paytm**            | `upi://mandate?` → `paytmmp://mandate?`     | `paytmmp://mandate?`     | Replace `upi` with `paytmmp`                                      |
+| **Navi**             | `upi://mandate?` → `navipay://mandate?`     | `navipay://mandate?`     | Replace `upi` with `navipay`                                      |
+| **Super.money**      | `upi://mandate?` → `super://mandate?`       | `super://mandate?`       | Replace `upi` with `super`                                        |
+| **CRED**             | `upi://mandate?` → `credpay://upi/mandate?` | `credpay://upi/mandate?` | Change scheme to `credpay://` and insert `/upi` before `mandate?` |
+| **BHIM**             | `upi://mandate?` → `bhim://mandate?`        | `bhim://mandate?`        | Replace `upi` with `bhim`                                         |
+
 
 
 
