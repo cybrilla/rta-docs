@@ -17,6 +17,7 @@ title: Settlement TATs
 
 > **Note:**  
 > - **For single-order payments**, the day of unit allotment depends on the time of order submission. If the order is placed **before the fund’s cut-off time**, units are allotted at the **T-day NAV**; otherwise, allotment occurs on **T+1**.  
+> - **For single-order payments**, the same day settlement is subject to support of support of the payment methods and banks by the given AMC as detailed in the below table.
 > - The **cut-off time** for *liquid funds* is **1:15 PM**, and for *non-liquid funds* is **2:45 PM**.  
 > - **NAV applicability** is subject to realization of funds in the respective AMC’s collection account.  
 > - For **basket orders**, the day of unit allotment is always **T+1**.  
