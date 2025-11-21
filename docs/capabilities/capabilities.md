@@ -29,16 +29,23 @@ title: Capabilities
 - Direct schemes (for RIAs)
 
 ### Available Mutual Funds
-- Nippon India Mutual Fund
-- HDFC Mutual Fund
-- 360 ONE Mutual Fund
+- Aditya Birla Sun life Mutual Fund
+- Capitalmind Mutual Fund
+- Bandhan Mutual Fund
+- UTI Mutual Fund
+- The Wealth Company Mutual Fund
+- Edelweiss Mutual Fund
+- JM Financial Mutual Fund
+- Quantum Mutual Fund
+- Motilal Oswal Mutual Fund
+- DSP Mutual Fund
+- Kotak Mahindra Mutual Fund
 - ICICI Prudential Mutual Fund
-- Aditya Birla Mutual Fund
 - Axis Mutual Fund
 - Quant Mutual Fund
-- UTI Mutual Fund
-- Kotak Mutual Fund
-- DSP (Coming Soon)
+- Nippon India Mutual Fund AMC
+- HDFC Mutual Fund AMC
+- 360 One Mutual Fund
 
 ## Roadmap
 - UPI Autopay: Register mandate and debit first instalment in one attempt
