@@ -29,7 +29,6 @@ Same-day NAV is applicable only when payments are made through UPI (if supported
 | AMC Name | UPI supported | Netbanking supported |
 | --- | --- | --- |
 | Aditya Birla Sun life Mutual Fund | Yes | HDFC Bank<br />IDFC FIRST Bank<br />Kotak Bank<br />State Bank of India<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
-| TATA Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd |
 | UTI Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 | Bandhan Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 | Edelweiss Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
