@@ -36,6 +36,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 ### Good practices to verify bank accounts using Pre Verification APIs
 1. Always attempt the bank account verifications WITHOUT giving the `bank_account_proof` and the consent - `verify_manually_if_required` as `true`. This is due to the reason that manual verification of bank acccount is costly and should be attempted only if Pre Verification suggests you to do it. 
 2. Once Pre Verification lets you know that the particular bank account has to be manually verified, you can continue to provide the `bank_account_proof` and `verify_manually_if_required` flag as `true` in a new Pre Verification request so that the manual verification would be internally triggered.
+NOTE: Currently, `bank_account_proof` would be needed only in cases where you are attempting to verify `nre_savings` or `nro_savings` bank accounts.
 
 
 ## Workflow to complete investor's PAN validation [PAN, Name and Date of birth]
