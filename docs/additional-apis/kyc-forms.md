@@ -116,7 +116,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |reason|string|The reason why `kyc_form` is in a `failed` state|
 |pan|string|PAN number of the investor|
 |name|string|Name of the investor|
-|date_of_birth|Date of birth of the investor|
+|date_of_birth|String|Date of birth of the investor|
 |email_address|string|Email address of the investor|
 |phone_number|string|Phone number of the investor|
 |residential_status|enum|Investor's residential status. Possible values are - `resident`|
@@ -169,8 +169,8 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 ### Geo-location hash
 |Attribute|Type|Comments|
 |-|-|-|
-|latitude|Float|Value of the Latitude|
-|longitude|Float|Value of the Longitude|
+|latitude|float|Value of the Latitude|
+|longitude|float|Value of the Longitude|
 
 ### Esign details hash
 |Attribute|Type|Comments|
@@ -183,4 +183,67 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 `POST /poa/kyc_forms`
 
 This API lets you create a KYC form object.
+
+```json
+curl --location '{{base_url}}/poa/kyc_forms' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>' \
+--data '{
+    "type": "modify",
+
+    "pan": "AAAPA3751A",
+    "name": "John Doe",
+    "date_of_birth": "2000-01-02",
+
+    "proof_details_callback_url": "https://webhook.site/proof_details_callback",
+    "esign_callback_url": "https://webhook.site/esign_callback"
+}'
+```
+
+### Request parameters
+
+|Name|Mandatory|Type|Comments|
+|-|-|-|-|
+|type|yes|enum|Type of the KYC Form. Allowed values are - `modify`|
+|pan|yes|string|PAN number of the investor. This should be in the format `AAAPANNNNA` where `A` can be any alphabet and `N` can be any number|
+|name|yes|string|Name of the investor. This should not contain any special characters|
+|date_of_birth|yes|string|Date of birth of the investor in the format `yyyy-mm-dd`|
+|proof_details_callback_url|yes|string|The callback URL where the investor will be redirected to post proof fetch workflow|
+|esign_callback_url|yes|string|The callback URL where the investor will be redirected to post esign workflow|
+|email_address|no|string|Email address of the investor|
+|phone_number|no|string|Phone number of the investor|
+|residential_status|no|enum|Investor's residential status. Allowed values are - `resident`|
+|gender|no|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
+|marital_status|no|enum|Marital status of the investor. Allowed values are `married` and `unmarried`|
+|father_name|no|string|Investor's father's name. Mandatory if `spouse_name` is not given|
+|spouse_name|no|string|Investor's spouse's name. Mandatory if `father_name` is not given|
+|occupation_type|no|enum|Investor's occupation. Allowed values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
+|aadhaar_number|no|string|Last 4 digits of investor's Aadhaar number|
+|place_of_birth|no|string|Investor's place of birth|
+|income_slab|no|enum|Investor's income slab. Allowed values are - `upto_1lakh`, `above_1lakh_upto_5lakh`, `above_5lakh_upto_10lakh`, `above_10lakh_upto_25lakh`, `above_25lakh_upto_1cr`, `above_1cr`|
+|pep_details|no|string|Investor's political exposure details. Allowed values are<br/>- `pep` - Politically exposed<br/>- `related_pep` - Related to a politically exposed person<br/>- `no_exposure` - No political exposure|
+|citizenship_countries|no|array|List of countries where the investor has a citizenship|
+|nationality_country|no|string|ANSI code of investor's country of nationality|
+|tax_residency_other_than_india|no|boolean|If investor is a tax payer in any country other than India, such details will be indicated here. Possible values are `true` or `false`|
+|non_indian_tax_residency_1|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here. Mandatory if `tax_residency_other_than_india` is `true`|
+|non_indian_tax_residency_2|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
+|non_indian_tax_residency_3|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
+|signature_provided|no|boolean|Indicates if the photocopy of the signature has been updated against this `kyc_form` or not. Allowed values are `true` or `false`|
+|geo_location|no|hash|Geo-location of the investor from where this KYC form is being filled up and submitted|
+
+### Non Indian Tax Residency hash
+|Attribute|Mandatory|Type|Comments|
+|-|-|-|-|
+|country|yes|string|ANSI code of investor's country of tax residency|
+|taxid_number|yes|string|Valid Tax Identification number issued in the above mentioned country|
+
+### Geo-location hash
+|Attribute|Mandatory|Type|Comments|
+|-|-|-|-|
+|latitude|yes|float|Value of the Latitude|
+|longitude|yes|float|Value of the Longitude|
+
+**NOTE:** Even though the above parameters are non-mandatory for the `kyc_form` object creation, all these are needed to submit the `kyc_form` to the KRAs.
+
+> The `kyc_form` object will be returned as the response.
 
