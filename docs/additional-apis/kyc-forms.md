@@ -67,7 +67,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
         "fetch_url": "https://s.finprim.com/identity_documents/fetch_my_proof",
         "status": "pending"
     },
-    "proof_details_callback_url": "https://webhook.site/8e5e9d2d-4343-43e0-bc6a-7c46743066e5",
+    "proof_details_callback_url": "https://myapp.com/proof_details_callback",
     "identity": {
         "proof_type": null
     },
@@ -84,7 +84,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
         "esign_url": null,
         "status": null
     },
-    "esign_callback_url": "https://webhook.site/8e5e9d2d-4343-43e0-bc6a-7c46743066e5",
+    "esign_callback_url": "https://myapp.com/esign_callback",
     
     "requirements": {
         "fields_needed": [
@@ -195,8 +195,8 @@ curl --location '{{base_url}}/poa/kyc_forms' \
     "name": "John Doe",
     "date_of_birth": "2000-01-02",
 
-    "proof_details_callback_url": "https://webhook.site/proof_details_callback",
-    "esign_callback_url": "https://webhook.site/esign_callback"
+    "proof_details_callback_url": "https://myapp.com/proof_details_callback",
+    "esign_callback_url": "https://myapp.com/esign_callback"
 }'
 ```
 
