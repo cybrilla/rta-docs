@@ -29,7 +29,8 @@ The Pre Verification API lets a partner verify certain demographic information o
 6. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = low_confidence`, it means that given bank account details are not satisfactorily matching with the investor's details and this is not eligible to be used for transactional purposes.  
     6.1. You can check with the investor to collect the correct bank account details and retry with a new request.
 7. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = uncertain`, it means that the verification of this bank account was completed but the results are uncertain. These cases are eligible to be manually verified and you can reinitiate a new Pre Verification record for this and provide `verify_manually_if_required = true`.  
-    7.1. These cases will be seen for bank accounts of type `savings` or `current`. 
+    7.1. These cases will be seen for bank accounts of type `savings` or `current`.  
+    7.2. If you don't want this to be verified manually, you can collect a different bank account and attempt to verify the same.
 8. If suppose `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_account_proof_required`, it means that you not provided any `bank_account_proof` as a supporting documen to pre verify the given bank account. In these case, provide the `bank_account_proof` and create a new Pre Verification record.  
     8.1. These cases will be seen if you are trying to verify `nre_savings` or `nro_savings` bank accounts.
 9. If the Pre Verification request fails with the error message being `Approval is required when proof is provided`, it means that you have provided the `bank_account_proof` but you have not given the consent to manually verify the given bank account.  
@@ -157,7 +158,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest<br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1.`awaiting_approval_for_manual_verification_with_proof` - This bank account needs a  manual verification along with an associated bank account proof along with the approval for manual verification<br/>2. `bank_account_proof_required` This bank account needs a manual verification and in order to initiate it, the bank account proof should be provided|
+|code|string|1. `bank_verification_failed` - This bank account verification failed and you can either collect a new bank account from the investor or retry this in a new request<br/>2. `bank_account_proof_required` This bank account needs a manual verification and in order to initiate it, the bank account proof should be provided<br/>3. `low_confidence` - This means the given bank account details do not match with the investor details and hence this is not fit to be used for transactional purposes<br/>4. `uncertain` - This indicates that the result of the bank account verification is uncertain and this record is eligible for manual verification|
 |value.account_number|string|Bank account number|
 |value.ifsc_code|string|IFSC code associated with the bank account|
 |value.account_type|string|Bank account type|
@@ -213,7 +214,7 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 |value.account_number|yes|string|Bank account number|
 |value.ifsc_code|yes|string|IFSC code linked with the bank account|
 |value.account_type|yes|string|Bank account type. Supported values are - `savings`, `current`, `nre_savings`, `nro_savings`<br/><br/>Note: This is case-sensitive|
-|value.bank_account_proof|no|string|File ID of the associated bank account proof. Use [`POST /poa/files` API](files) to upload this file.<br/><br/>- Mandatory if you want this bank account to be manually verified in case the bank account verification demands it<br/>- Optional if you don't want this bank account to be manually verified|
+|value.bank_account_proof|no|string|File ID of the associated bank account proof. Use [`POST /poa/files` API](files) to upload this file.<br/><br/>- Mandatory if you want this bank account to be manually verified in case the bank account verification demands it. Applicable for `nre_savings` and `nro_savings` bank account types|
 |verify_manually_if_required|no|boolean|- If `true`, then it means you are approving the `pre_verification` object to manually verify the bank account if the need arises<br/>- If `false`, then it means you don't want `pre_verification` object to automatically verify the bank account even though there is a need of it. In these cases, you can choose to collect a different bank account from the investor and attempt verification again|
 
 > The `pre_verification` object will be returned as the response.
