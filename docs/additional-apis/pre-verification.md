@@ -24,19 +24,24 @@ The Pre Verification API lets a partner verify certain demographic information o
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
 3. If `status` is `completed`, it means there is a result available.
 4. At this stage, if `bank_accounts[i].status = verified`, it means that particular bank account is verified and can be used to invest. You can go ahead and accept the transactions using that bank accounts.
-5. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_verification_failed`, it means that this particular bank account is not eligible to be used for transactional purposes. 
-		5.1. In these cases, you can proceed with collecting another bank account from the investor and use that.
-6. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = awaiting_approval_for_manual_verification_with_proof`, it means that this particular bank account is eligible for manual verification and that you need to pass the bank account proof and also the consent to manually verify the bank account. 
-		6.1. In these cases, you can go ahead and create a new Pre Verification record by providing the `bank_account_proof` and set `verify_manually_if_required` as `true`
-		6.2. In this Pre Verification result, if `bank_accounts[i].status = verified`, you can go ahead and accept the transactions using that particular bank account.
-		6.3. In this Pre Verification result, if `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_verification_failed`, it means that this particular bank account is not eligible to be used for transactional purposes.
-7. If suppose `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_account_proof_required`, it means that you have given your consent to Pre Verification to initiate a manual verification if required; but have not provided any `bank_account_proof` as a supporting document. In these case, provide the `bank_account_proof` and create a new Pre Verification record
-8. If suppose `bank_accounts[i].status = null` and `bank_accounts[i].code = null`, it means that the bank account verification is in progress and the results should be available soon.
+5. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_verification_failed`, it means that this particular bank account verification failed.  
+	5.1. In these cases, you can either proceed with collecting another bank account from the investor and use that or retry the bank account verification again.
+6. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = low_confidence`, it means that given bank account details are not satisfactorily matching with the investor's details and this is not eligible to be used for transactional purposes.  
+    6.1. You can check with the investor to collect the correct bank account details and retry with a new request.
+7. If `bank_accounts[i].status = failed` and `bank_accounts[i].code = uncertain`, it means that the verification of this bank account was completed but the results are uncertain. These cases are eligible to be manually verified and you can reinitiate a new Pre Verification record for this and provide `verify_manually_if_required = true`.  
+    7.1. These cases will be seen for bank accounts of type `savings` or `current`. 
+8. If suppose `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_account_proof_required`, it means that you not provided any `bank_account_proof` as a supporting documen to pre verify the given bank account. In these case, provide the `bank_account_proof` and create a new Pre Verification record.  
+    8.1. These cases will be seen if you are trying to verify `nre_savings` or `nro_savings` bank accounts.
+9. If the Pre Verification request fails with the error message being `Approval is required when proof is provided`, it means that you have provided the `bank_account_proof` but you have not given the consent to manually verify the given bank account.  
+    9.1. These cases will be seen for bank accounts of type `nre_savings` or `nro_savings`
+    9.2. Provide `verify_manually_if_required = true` and retry the request.
+10. If suppose `bank_accounts[i].status = null` and `bank_accounts[i].code = null`, it means that the bank account verification is in progress and the results should be available soon.
 
 ### Good practices to verify bank accounts using Pre Verification APIs
 1. Always attempt the bank account verifications WITHOUT giving the `bank_account_proof` and the consent - `verify_manually_if_required` as `true`. This is due to the reason that manual verification of bank acccount is costly and should be attempted only if Pre Verification suggests you to do it. 
-2. Once Pre Verification lets you know that the particular bank account has to be manually verified, you can continue to provide the `bank_account_proof` and `verify_manually_if_required` flag as `true` in a new Pre Verification request so that the manual verification would be internally triggered.
-NOTE: Currently, `bank_account_proof` would be needed only in cases where you are attempting to verify `nre_savings` or `nro_savings` bank accounts.
+2. Once Pre Verification indicates that the particular bank account has to be manually verified, you can continue to provide the `bank_account_proof` and `verify_manually_if_required` flag as `true` in a new Pre Verification request so that the manual verification would be internally triggered.
+
+**NOTE:** Currently, `bank_account_proof` would be needed only in cases where you are attempting to verify `nre_savings` or `nro_savings` bank accounts.
 
 
 ## Workflow to complete investor's PAN validation [PAN, Name and Date of birth]
