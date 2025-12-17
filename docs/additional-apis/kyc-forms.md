@@ -18,7 +18,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 4. At this point, you will also see a redirection URL present in the `proof_details.fetch_url` attribute. Use this URL to redirect your investor into the Digilocker page and the investor has to complete the journey to fetch Aadhaar details. Once Aadhaar details are fetched, the same will be used as both Identity and Address proofs.
     4.1. In case the proof details fetch fails due to some reason, you can retry the same using `Retry proof details fetch API`
     4.2. Note that you can use this Retry proof details fetch API only if `proof_details.status = failed`
-5. You also need to collect a photocopy of the investor's wet signature to complete the workflow. Once you have the same, you need to use the `Add Signature to KYC Form API` to upload the signature file to Cybrilla.
+5. You also need to collect a photocopy of the investor's wet signature to complete the workflow. Once you have the same, you need to use the `Upload Signature to KYC Form API` to upload the signature file to Cybrilla.
 6. Once you have provided all the details to Cybrilla, `requirements.fields_needed` in the `kyc_form` object will be `null`. At this point, `kyc_form` will move into `awaiting_esign` state.
 7. Refer to `esign_details.esign_url` attribute to get the esign redirection link where the investor should complete the esign journey. Once this is completed successfully, `kyc_form` will move into `awaiting_submission` state.
     7.1. `kyc_form` can move into `awaiting_submission` state IFF `esign_details.status = successful`
@@ -135,7 +135,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |non_indian_tax_residency_1|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |non_indian_tax_residency_2|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |non_indian_tax_residency_3|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
-|signature_provided|boolean|Indicates if the photocopy of the signature has been updated against this `kyc_form` or not. Possbile values are `true` or `false`|
+|signature_provided|boolean|Indicates if the photocopy of the signature has been uploaded against this `kyc_form` or not. Possbile values are `true` or `false`|
 |proof_details|hash|This will give the details on the status of fetching proof details that will be submitted against the `kyc_form`|
 |proof_details_callback_url|string|The callback URL where the investor will be redirected to post proof fetch workflow|
 |identity|hash|Identity proof details. This will have the `proof_type` that was captured. Possible values are `aadhaar`|
@@ -228,7 +228,6 @@ curl --location '{{base_url}}/poa/kyc_forms' \
 |non_indian_tax_residency_1|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here. Mandatory if `tax_residency_other_than_india` is `true`|
 |non_indian_tax_residency_2|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |non_indian_tax_residency_3|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
-|signature_provided|no|boolean|Indicates if the photocopy of the signature has been updated against this `kyc_form` or not. Allowed values are `true` or `false`|
 |geo_location|no|hash|Geo-location of the investor from where this KYC form is being filled up and submitted|
 
 ### Non Indian Tax Residency hash
@@ -247,3 +246,72 @@ curl --location '{{base_url}}/poa/kyc_forms' \
 
 > The `kyc_form` object will be returned as the response.
 
+## Update KYC Form API
+
+`PATCH /poa/kyc_forms`
+
+This API lets you update a KYC form object.
+
+```json
+curl --location --request PATCH '{{base_url}}/poa/kyc_forms' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>' \
+--data '{
+    "id": "{{kyc_form_id}}",
+
+    "gender": "male",
+    "marital_status": "unmarried"
+}'
+```
+
+### Request parameters
+
+|Name|Mandatory|Type|Comments|
+|-|-|-|-|
+|id|yes|string|ID of the `kyc_form` object which has to be updated|
+
+**NOTE:** Other parameters are same as `Create KYC Form API` request parameters. Ensure that all the listed fields in `requirements.fields_needed` array are updated.
+
+> The `kyc_form` object will be returned as the response.
+
+
+## Fetch KYC Form API
+
+This API lets you fetch a KYC Form object.
+
+```json
+curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {{token}}' \
+```
+
+### Query parameters
+
+|Name|Mandatory|Type|Comments|
+|-|-|-|-|
+|id|yes|string|ID of the `kyc_form` object which has to be updated|
+
+> The `kyc_form` object will be returned as the response.
+
+
+## Upload Signature to KYC Form API
+
+This API lets you update a signature file to the KYC Form object.
+
+```json
+curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/signature' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {{token}}' \
+--form 'file=@"/Users/guessmyname/Downloads/WhiteAndBlackSignature.jpg"'
+```
+
+**NOTE:** Once you have uploaded the signature to `kyc_form` object, `signature_provided` will be marked as `true`.
+
+> The `kyc_form` object will be returned as the response.
+
+
+## Retry proof details fetch API
+
+This API lets you get a new URL to fetch `proof_details`. You can use this API only if `proof_details.status` is in a `failed` state.
+
+> The `kyc_form` object will be returned as the response.
