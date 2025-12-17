@@ -126,6 +126,10 @@ The Pre Verification API lets a partner verify certain demographic information o
 |code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor cannot investor because his KYC record is incomplete. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>3.`upstream_error`: There was an error contacting upstream to check readiness <br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
+**Handling different `readiness` scenarios**
+- If `readiness.status = verified` or `readiness.status = failed` with `readiness.code = kyc_incomplete`, you can use [KYC Forms API](/additional-apis/kyc-forms.md) to update the investor details if required.
+- If `readiness.status = failed` with `readiness.code = unavailable`, you need to initiate a fresh KYC for this investor and submit the same.
+
 ### Name hash
 |Attribute|Type|Remarks|
 |---|---|---|
