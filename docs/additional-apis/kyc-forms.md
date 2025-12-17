@@ -219,8 +219,8 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 |residential_status|no|yes|enum|Investor's residential status. Allowed values are - `resident`|
 |gender|no|yes|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
 |marital_status|no|yes|enum|Marital status of the investor. Allowed values are `married` and `unmarried`|
-|father_name|no|yes|string|Investor's father's name. Mandatory if `spouse_name` is not given|
-|spouse_name|no|yes|string|Investor's spouse's name. Mandatory if `father_name` is not given|
+|father_name|no|conditional|string|Investor's father's name. Needed only if `marital_status` is `umarried` or `others`|
+|spouse_name|no|conditional|string|Investor's spouse's name. Needed only if `marital_status` is `married`|
 |occupation_type|no|yes|enum|Investor's occupation. Allowed values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
 |aadhaar_number|no|yes|string|Last 4 digits of investor's Aadhaar number|
 |country_of_birth|no|yes|string|Investor's country of birth. ISO country code should be provided|
