@@ -128,7 +128,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |marital_status|enum|Marital status of the investor. Possible values are `married`, `unmarried` and `others`|
 |father_name|string|Investor's father's name. Needed only if `marital_status` is `umarried` or `others`|
 |spouse_name|string|Investor's spouse's name. Needed only if `marital_status` is `married`|
-|occupation_type|enum|Investor's occupation. Possible values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
+|occupation_type|enum|Investor's occupation. Possible values are - `business`, `professional`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
 |aadhaar_number|string|Last 4 digits of investor's Aadhaar number|
 |country_of_birth|string|Investor's country of birth. ISO country code will be present|
 |place_of_birth|string|Investor's place of birth|
@@ -218,22 +218,22 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 |phone_number|no|yes|string|Phone number of the investor|
 |residential_status|no|yes|enum|Investor's residential status. Allowed values are - `resident`|
 |gender|no|yes|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
-|marital_status|no|yes|enum|Marital status of the investor. Allowed values are `married` and `unmarried`|
+|marital_status|no|yes|enum|Marital status of the investor. Allowed values are `married`, `unmarried` and `others`|
 |father_name|no|conditional|string|Investor's father's name. Needed only if `marital_status` is `umarried` or `others`|
 |spouse_name|no|conditional|string|Investor's spouse's name. Needed only if `marital_status` is `married`|
-|occupation_type|no|yes|enum|Investor's occupation. Allowed values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
+|occupation_type|no|yes|enum|Investor's occupation. Allowed values are - `business`, `professional`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
 |aadhaar_number|no|yes|string|Last 4 digits of investor's Aadhaar number|
 |country_of_birth|no|yes|string|Investor's country of birth. ISO country code should be provided|
 |place_of_birth|no|yes|string|Investor's place of birth. Length is allowed upto 60 characters|
 |income_slab|no|yes|enum|Investor's income slab. Allowed values are - `upto_1lakh`, `above_1lakh_upto_5lakh`, `above_5lakh_upto_10lakh`, `above_10lakh_upto_25lakh`, `above_25lakh_upto_1cr`, `above_1cr`|
 |pep_details|no|yes|string|Investor's political exposure details. Allowed values are<br/>- `pep` - Politically exposed<br/>- `related_pep` - Related to a politically exposed person<br/>- `no_exposure` - No political exposure|
-|citizenship_countries|no|yes|array|List of countries where the investor has a citizenship|
+|citizenship_countries|no|yes|array|List of countries where the investor has a citizenship. Currently only one value is supported. You need to pass the ANSI code of the citizenship country|
 |nationality_country|no|yes|string|ANSI code of investor's country of nationality|
 |tax_residency_other_than_india|no|yes|boolean|If investor is a tax payer in any country other than India, such details will be indicated here. Possible values are `true` or `false`|
 |non_indian_tax_residency_1|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here. Mandatory if `tax_residency_other_than_india` is `true`|
 |non_indian_tax_residency_2|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |non_indian_tax_residency_3|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
-|geo_location|no|yes|hash|Geo-location of the investor from where this KYC form is being filled up and submitted|
+|geo_location|no|yes|hash|Geo-location of the investor from where this KYC form is being filled up and submitted. Ensure that this in within India|
 
 ### Non Indian Tax Residency hash
 |Attribute|Mandatory|Type|Comments|
