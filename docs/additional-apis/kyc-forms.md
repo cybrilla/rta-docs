@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
 sidebar_label: KYC Forms API
-title: KYC Forms API
+title: KYC Forms API (Early access)
 ---
 
-The KYC Forms API lets a partner submit or modify KYC details of their investors. Currently, Cybrilla POA supports only modification of existing KYC records. The modification of KYC record will be supported if the investors' KYC is one of the below -
+The KYC Forms API lets a partner submit or modify KYC details of their investors. Currently, Cybrilla POA supports only modification of existing KYC records. The modification of KYC record will be supported if the investors' KYC status at the KRA is one of the below -
 - `validated`
 - `verified` or `registered`
 - `onhold`
@@ -14,17 +14,20 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 2. Create a KYC Form with `type = modify` by giving `pan`, `name`, `date_of_birth`, `proof_details_callback_url` and `esign_callback_url`. At this stage, `kyc_form` object will be created with `under_review` state. Internally Cybrilla will decide if the particular KYC record linked against the given PAN is eligible for KYC Modification or not. If not eligible, `kyc_form` will move into `failed` state with `reason = ineligible_for_kyc_modification` 
     - `proof_details_callback_url` will take in the URL where you want the investor to redirect back after the Digilocker journey
     - `esign_callback_url` will take in the URL where you want the investor to redirect back after the esign journey
-3. If the KYC record is eligible to be modified, then `kyc_form` will move into `created` state. At this point, you need to provide all the details needed to complete the form. You can refer to `requirements.fields_needed` array to figure out the pending details.
-4. At this point, you will also see a redirection URL present in the `proof_details.fetch_url` attribute. Use this URL to redirect your investor into the Digilocker page and the investor has to complete the journey to fetch Aadhaar details. Once Aadhaar details are fetched, the same will be used as both Identity and Address proofs.
-    4.1. In case the proof details fetch fails due to some reason, you can retry the same using `Retry proof details fetch API`
-    4.2. Note that you can use this Retry proof details fetch API only if `proof_details.status = failed`
-5. You also need to collect a photocopy of the investor's wet signature to complete the workflow. Once you have the same, you need to use the `Upload Signature to KYC Form API` to upload the signature file to Cybrilla.
-6. Once you have provided all the details to Cybrilla, `requirements.fields_needed` in the `kyc_form` object will be `null`. At this point, `kyc_form` will move into `awaiting_esign` state.
-7. Refer to `esign_details.esign_url` attribute to get the esign redirection link where the investor should complete the esign journey. Once this is completed successfully, `kyc_form` will move into `awaiting_submission` state.
-    7.1. `kyc_form` can move into `awaiting_submission` state IFF `esign_details.status = successful`
-    7.2. You can retry this URL as long as the investor can make a successful esign
+    - Please note that `pan`, `name` and `date_of_birth` should be as per ITD / PAN records
+3. If the KYC record is eligible to be modified, then `kyc_form` will move into `created` state. Now, you need to provide all the details needed to complete the form. You can refer to `requirements.fields_needed` array to figure out the pending details.
+4. You will also see a redirection URL present in the `proof_details.fetch_url` attribute. Use this URL to redirect your investor into the Digilocker page and the investor has to complete the journey to fetch Aadhaar details. Once Aadhaar details are fetched, the same will be used as both Identity and Address proofs.  
+    4.1. In case the proof details fetch fails due to some reason, you can retry the same using `Retry proof details fetch` API.  
+    4.2. Note that you can use this Retry proof details fetch API only if `proof_details.status = failed`.  
+5. You also need to collect a photocopy of the investor's wet signature to complete the workflow. Once you have the same, you need to use the `Upload Signature to KYC Form` API to upload the signature file to Cybrilla.
+6. Once you have provided all the details to Cybrilla, `requirements.fields_needed` in the `kyc_form` object will be `null`. Now, `kyc_form` will move into `awaiting_esign` state.
+7. Refer to `esign_details.esign_url` attribute to get the esign redirection link where the investor should complete the esign journey. Once this is completed successfully, `kyc_form` will move into `awaiting_submission` state.  
+    7.1. `kyc_form` can move into `awaiting_submission` state only if `esign_details.status` is in `successful` state.  
+    7.2. You can retry this URL as long as the investor can make a successful esign.
 8. Internally Cybrilla will attempt to submit this KYC Form to the KRA and based on this, `kyc_form` will move into either `submitted` or `failed` state. If it moves into a `failed` state, you can refer to the `reason` attribute for more details.
-9. If suppose investor is not taking any action to complete the KYC Form within 7 days since its creation, `kyc_form` will move into `expired` state. You can refer to `expires_at` attribute to get to know the expiry date and time. If the investor wants to modify the KYC record at a later date, a new `kyc_form` has to be created and this same workflow has to be followed
+9. If suppose investor is not taking any action to complete the KYC Form within 7 days since its creation, `kyc_form` will move into `expired` state. You can refer to `expires_at` attribute to get to know the expiry date and time. If the investor wants to modify the KYC record at a later date, a new `kyc_form` has to be created and this same workflow has to be followed.
+
+> **NOTE:** You can create a `kyc_form` object only if there is no on-going `kyc_form` for the given PAN. 
 
 ## KYC Form object
 ```json
@@ -49,6 +52,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
     "spouse_name": null,
     "occupation_type": "private_sector_service",
     "aadhaar_number": "1210",
+    "country_of_birth": "in",
     "place_of_birth": "in",
     "income_slab": "above_10lakh_upto_25lakh",
     "pep_details": "no_exposure",
@@ -121,11 +125,12 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |phone_number|string|Phone number of the investor|
 |residential_status|enum|Investor's residential status. Possible values are - `resident`|
 |gender|enum|Investor's gender. Possible values are - `male`, `female` and `transgender`|
-|marital_status|enum|Marital status of the investor. Possible values are `married` and `unmarried`|
-|father_name|string|Investor's father's name. Mandatory if `spouse_name` is not given|
-|spouse_name|string|Investor's spouse's name. Mandatory if `father_name` is not given|
+|marital_status|enum|Marital status of the investor. Possible values are `married`, `unmarried` and `others`|
+|father_name|string|Investor's father's name. Needed only if `marital_status` is `umarried` or `others`|
+|spouse_name|string|Investor's spouse's name. Needed only if `marital_status` is `married`|
 |occupation_type|enum|Investor's occupation. Possible values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
 |aadhaar_number|string|Last 4 digits of investor's Aadhaar number|
+|country_of_birth|string|Investor's country of birth. ISO country code will be present|
 |place_of_birth|string|Investor's place of birth|
 |income_slab|enum|Investor's income slab. Possible values are - `upto_1lakh`, `above_1lakh_upto_5lakh`, `above_5lakh_upto_10lakh`, `above_10lakh_upto_25lakh`, `above_25lakh_upto_1cr`, `above_1cr`|
 |pep_details|string|Investor's political exposure details. Possible values are<br/>- `pep` - Politically exposed<br/>- `related_pep` - Related to a politically exposed person<br/>- `no_exposure` - No political exposure|
@@ -144,10 +149,9 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |esign_details|hash|This will give the details on the status of the esign workflow|
 |esign_callback_url|string|The callback URL where the investor will be redirected to post esign workflow|
 |requirements|hash|Feedback on the data requirements. It contains `fields_needed` array which represent the list of fields that are required for procesing the KYC Form|
-|created_at|string|The timestamp at which the `kyc_form` object was created|
+|created_at|string|The timestamp at which the `kyc_form` object was created with `under_review` state|
 |updated_at|string|The timestamp at which the `kyc_form` object was updated with any value|
-|under_review_at|string|The timestamp at which the `kyc_form` object moved into `under_review` state|
-|created_state_at|string|The timestamp at which the `kyc_form` object moved into `created` state|
+|review_completed_at|string|The timestamp at which the `kyc_form` object moved into `created` state from `under_review` state|
 |awaiting_esign_at|string|The timestamp at which the `kyc_form` object moved into `awaiting_esign` state|
 |awaiting_submission_at|string|The timestamp at which the `kyc_form` object moved into `awaiting_submission` state|
 |submitted_at|string|The timestamp at which the `kyc_form` object moved into `submitted` state|
@@ -202,33 +206,34 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 
 ### Request parameters
 
-|Name|Mandatory|Type|Comments|
-|-|-|-|-|
-|type|yes|enum|Type of the KYC Form. Allowed values are - `modify`|
-|pan|yes|string|PAN number of the investor. This should be in the format `AAAPANNNNA` where `A` can be any alphabet and `N` can be any number|
-|name|yes|string|Name of the investor. This should not contain any special characters|
-|date_of_birth|yes|string|Date of birth of the investor in the format `yyyy-mm-dd`|
-|proof_details_callback_url|yes|string|The callback URL where the investor will be redirected to post proof fetch workflow|
-|esign_callback_url|yes|string|The callback URL where the investor will be redirected to post esign workflow|
-|email_address|no|string|Email address of the investor|
-|phone_number|no|string|Phone number of the investor|
-|residential_status|no|enum|Investor's residential status. Allowed values are - `resident`|
-|gender|no|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
-|marital_status|no|enum|Marital status of the investor. Allowed values are `married` and `unmarried`|
-|father_name|no|string|Investor's father's name. Mandatory if `spouse_name` is not given|
-|spouse_name|no|string|Investor's spouse's name. Mandatory if `father_name` is not given|
-|occupation_type|no|enum|Investor's occupation. Allowed values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
-|aadhaar_number|no|string|Last 4 digits of investor's Aadhaar number|
-|place_of_birth|no|string|Investor's place of birth|
-|income_slab|no|enum|Investor's income slab. Allowed values are - `upto_1lakh`, `above_1lakh_upto_5lakh`, `above_5lakh_upto_10lakh`, `above_10lakh_upto_25lakh`, `above_25lakh_upto_1cr`, `above_1cr`|
-|pep_details|no|string|Investor's political exposure details. Allowed values are<br/>- `pep` - Politically exposed<br/>- `related_pep` - Related to a politically exposed person<br/>- `no_exposure` - No political exposure|
-|citizenship_countries|no|array|List of countries where the investor has a citizenship|
-|nationality_country|no|string|ANSI code of investor's country of nationality|
-|tax_residency_other_than_india|no|boolean|If investor is a tax payer in any country other than India, such details will be indicated here. Possible values are `true` or `false`|
-|non_indian_tax_residency_1|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here. Mandatory if `tax_residency_other_than_india` is `true`|
-|non_indian_tax_residency_2|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
-|non_indian_tax_residency_3|no|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
-|geo_location|no|hash|Geo-location of the investor from where this KYC form is being filled up and submitted|
+|Name|Mandatory to create `kyc_form` object|Mandatory to submit `kyc_form` details|Type|Comments|
+|-|-|-|-|-|
+|type|yes|yes|enum|Type of the KYC Form. Allowed values are - `modify`|
+|pan|yes|yes|string|PAN number of the investor. This should be in the format `AAAPANNNNA` where `A` can be any alphabet and `N` can be any number|
+|name|yes|yes|string|Name of the investor. This should not contain any special characters|
+|date_of_birth|yes|yes|string|Date of birth of the investor in the format `yyyy-mm-dd`|
+|proof_details_callback_url|yes|yes|string|The callback URL where the investor will be redirected to post proof fetch workflow|
+|esign_callback_url|yes|yes|string|The callback URL where the investor will be redirected to post esign workflow|
+|email_address|no|yes|string|Email address of the investor|
+|phone_number|no|yes|string|Phone number of the investor|
+|residential_status|no|yes|enum|Investor's residential status. Allowed values are - `resident`|
+|gender|no|yes|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
+|marital_status|no|yes|enum|Marital status of the investor. Allowed values are `married` and `unmarried`|
+|father_name|no|yes|string|Investor's father's name. Mandatory if `spouse_name` is not given|
+|spouse_name|no|yes|string|Investor's spouse's name. Mandatory if `father_name` is not given|
+|occupation_type|no|yes|enum|Investor's occupation. Allowed values are - `business`, `professional`, `self_employed`, `retired`, `housewife`, `student`, `public_sector_service`, `private_sector_service`, `government_service`, `agriculture`, `doctor`, `forex_dealer`, `service`, `others`|
+|aadhaar_number|no|yes|string|Last 4 digits of investor's Aadhaar number|
+|country_of_birth|no|yes|string|Investor's country of birth. ISO country code should be provided|
+|place_of_birth|no|yes|string|Investor's place of birth. Length is allowed upto 60 characters|
+|income_slab|no|yes|enum|Investor's income slab. Allowed values are - `upto_1lakh`, `above_1lakh_upto_5lakh`, `above_5lakh_upto_10lakh`, `above_10lakh_upto_25lakh`, `above_25lakh_upto_1cr`, `above_1cr`|
+|pep_details|no|yes|string|Investor's political exposure details. Allowed values are<br/>- `pep` - Politically exposed<br/>- `related_pep` - Related to a politically exposed person<br/>- `no_exposure` - No political exposure|
+|citizenship_countries|no|yes|array|List of countries where the investor has a citizenship|
+|nationality_country|no|yes|string|ANSI code of investor's country of nationality|
+|tax_residency_other_than_india|no|yes|boolean|If investor is a tax payer in any country other than India, such details will be indicated here. Possible values are `true` or `false`|
+|non_indian_tax_residency_1|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here. Mandatory if `tax_residency_other_than_india` is `true`|
+|non_indian_tax_residency_2|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
+|non_indian_tax_residency_3|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
+|geo_location|no|yes|hash|Geo-location of the investor from where this KYC form is being filled up and submitted|
 
 ### Non Indian Tax Residency hash
 |Attribute|Mandatory|Type|Comments|
@@ -242,7 +247,7 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 |latitude|yes|float|Value of the Latitude|
 |longitude|yes|float|Value of the Longitude|
 
-**NOTE:** Even though the above parameters are non-mandatory for the `kyc_form` object creation, all these are needed to submit the `kyc_form` to the KRAs.
+**NOTE:** Even though some of the above parameters are marked as non-mandatory for the `kyc_form` object creation, all those are needed to submit the `kyc_form` to the KRA.
 
 > The `kyc_form` object will be returned as the response.
 
@@ -305,7 +310,10 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/signa
 --form 'file=@"/Users/guessmyname/Downloads/WhiteAndBlackSignature.jpg"'
 ```
 
-**NOTE:** Once you have uploaded the signature to `kyc_form` object, `signature_provided` will be marked as `true`.
+**NOTE:** 
+- Once you have uploaded the signature to `kyc_form` object, `signature_provided` will be marked as `true`.
+- Supported file formats: `png`, `jpg`, `jpeg` and `pdf`
+- Supported file size: Upto 5 MB
 
 > The `kyc_form` object will be returned as the response.
 
