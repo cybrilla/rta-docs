@@ -185,7 +185,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 This API lets you create a KYC form object.
 
 ```json
-curl --location '{{base_url}}/poa/kyc_forms' \
+curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer <token>' \
 --data '{
@@ -280,9 +280,9 @@ curl --location --request PATCH '{{base_url}}/poa/kyc_forms' \
 This API lets you fetch a KYC Form object.
 
 ```json
-curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}' \
+curl --location --request GET '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{token}}' \
+--header 'Authorization: Bearer <token>' \
 ```
 
 ### Query parameters
@@ -299,9 +299,9 @@ curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}' \
 This API lets you update a signature file to the KYC Form object.
 
 ```json
-curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/signature' \
+curl --location --request POST '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/signature' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{token}}' \
+--header 'Authorization: Bearer <token>' \
 --form 'file=@"/Users/guessmyname/Downloads/WhiteAndBlackSignature.jpg"'
 ```
 
@@ -313,5 +313,12 @@ curl --location '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/signature' \
 ## Retry proof details fetch API
 
 This API lets you get a new URL to fetch `proof_details`. You can use this API only if `proof_details.status` is in a `failed` state.
+
+```json
+curl --location --request POST '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/retry_proof_details_fetch' \
+--header 'Content-Type: application/json' \
+--header 'x-tenant-id: cybrillarta' \
+--header 'Authorization: Bearer <token>'
+```
 
 > The `kyc_form` object will be returned as the response.
