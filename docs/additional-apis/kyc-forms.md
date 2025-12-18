@@ -260,6 +260,19 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 
 > The `kyc_form` object will be returned as the response.
 
+### Note on KYC Form object events 
+- Events are triggered upon `status` changes that happen on `kyc_form` object.
+- Types of events -
+    - `kyc_form.under_review`
+    - `kyc_form.created`
+    - `kyc_form.awaiting_esign`
+    - `kyc_form.awaiting_submission`
+    - `kyc_form.submitted`
+    - `kyc_form.failed`
+    - `kyc_form.expired`
+    - `kyc_form.updated`
+- For more details, check [Webhook notifications](https://fintechprimitives.com/docs/api/#webhook-notifications) page.
+
 ## Update KYC Form API
 
 `PATCH /poa/kyc_forms`
