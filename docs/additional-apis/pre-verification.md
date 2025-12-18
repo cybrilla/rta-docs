@@ -226,6 +226,7 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 ### Note on NRI bank account verifications
 - Currently, you can only attempt Pre Verification of `nre_savings` and `nro_savings` bank accounts
 - All the NRI bank accounts will be manually verified as of now
+- `bank_account_proof` is mandatory for NRI bank account verifications
 
 ### Note on PAN validation
 - You need to provide `pan`, `name` and `date_of_birth` to trigger a PAN validation
