@@ -34,7 +34,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 8. If suppose `bank_accounts[i].status = failed` and `bank_accounts[i].code = bank_account_proof_required`, it means that you not provided any `bank_account_proof` as a supporting documen to pre verify the given bank account. In these case, provide the `bank_account_proof` and create a new Pre Verification record.  
     8.1. These cases will be seen if you are trying to verify `nre_savings` or `nro_savings` bank accounts.
 9. If the Pre Verification request fails with the error message being `Approval is required when proof is provided`, it means that you have provided the `bank_account_proof` but you have not given the consent to manually verify the given bank account.  
-    9.1. These cases will be seen for bank accounts of type `nre_savings` or `nro_savings`
+    9.1. These cases will be seen for bank accounts of type `nre_savings` or `nro_savings`  
     9.2. Provide `verify_manually_if_required = true` and retry the request.
 10. If suppose `bank_accounts[i].status = null` and `bank_accounts[i].code = null`, it means that the bank account verification is in progress and the results should be available soon.
 
@@ -218,6 +218,10 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 |verify_manually_if_required|no|boolean|- If `true`, then it means you are approving the `pre_verification` object to manually verify the bank account if the need arises<br/>- If `false`, then it means you don't want `pre_verification` object to automatically verify the bank account even though there is a need of it. In these cases, you can choose to collect a different bank account from the investor and attempt verification again|
 
 > The `pre_verification` object will be returned as the response.
+
+### Note on RI bank account verifications
+- As a first step, all bank account verifications of `savings` or `current` bank account types, will be performed digitally
+- If suppose the result is unsatisfactory and this record is eligible to be verified manually, the same will be indicated via `code` being `uncertain`. In these cases, you can trigger a new Pre Verification with the same bank account details along with setting `verify_manually_if_required` flag to `true`
 
 ### Note on NRI bank account verifications
 - Currently, you can only attempt Pre Verification of `nre_savings` and `nro_savings` bank accounts
