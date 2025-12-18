@@ -29,6 +29,16 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 
 > **NOTE:** You can create a `kyc_form` object only if there is no on-going `kyc_form` for the given PAN. 
 
+### Note on KYC Form reviewing the investor's eligibility
+- KYC Form once created, will be in `under_review` state. Here a bunch of checks are performed internally to check the eligibility of the investor trying to submit the form.
+- If the investor is trying to push a KYC Form with `type = modify`, then Cybrilla will check below items and take necessary actions -
+
+|Scenario|Type of KYC Form|Action taken|
+|-|-|-|
+|Investor's KYC is <br/>- `validated` <br/>- `verified` or `registered` <br/>- `onhold`|`modify`|Cybrilla will allow such investors to submit Modify KYC Form|
+|Investor's KYC is other than <br/>- `validated` <br/>- `verified` or `registered` <br/>- `onhold`|`modify`|Cybrilla will not allow such investors to submit Modify KYC Form|
+|Investor's PAN details do not match with ITD/PAN database|`modify`|Cybrilla will not allow such investors to submit Modify KYC Form|
+
 ## KYC Form object
 ```json
 {
@@ -329,3 +339,18 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms/{{kyc_form_id}}/retry
 ```
 
 > The `kyc_form` object will be returned as the response.
+
+---
+
+## Testing
+
+In sandbox, simulation facility can be used to test the submission of KYC Forms workflows. This facility is only available in sandbox.
+
+|Scenario|PAN format|KYC Form Status|Description|
+|-|-|-|-|
+|KRA accepted the KYC Form|XXXPXNNNNX|submitted|This will simulate a successful submission of KYC Form to the KRA. Use this pattern of PAN where `X` denotes any alphabet and `N` denotes any number|
+|KRA rejected the KYC Form|XXXPXNNNNR|failed|This will simulate a failed submission of KYC Form to the KRA. Use this pattern of PAN where `X` denotes any alphabet and `N` denotes any number|
+
+> **NOTE:** 
+> - To simulate various KYC Statuses, you can use the same testing scenarios present in KYC Check section. [Here](https://docs.fintechprimitives.com/identity/kyc-check/#testing) is the link to that.
+> - While you use the KYC Check simulations, you can also use the above mentioned KYC Form submission simulation as a part of the same input, to test out multiple scenarios.
