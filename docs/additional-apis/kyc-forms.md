@@ -100,8 +100,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 
     "created_at": "2025-12-23T12:41:06.649Z",
     "updated_at": null,
-    "under_review_at": "2025-12-23T12:41:06.649Z",
-    "created_state_at": "2025-12-23T12:41:07.649Z",
+    "review_completed_at": "2025-12-23T12:41:07.649Z",
     "awaiting_esign_at" : null,
     "awaiting_submission_at": null,
     "submitted_at": null,
