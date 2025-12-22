@@ -228,6 +228,10 @@ curl --location '{{base_url}}/poa/pre_verifications' \
 - All the NRI bank accounts will be manually verified as of now
 - `bank_account_proof` is mandatory for NRI bank account verifications
 
+### Note on manual bank account verifications
+- Manual bank account verifications are performed by Cybrilla's team
+- Currently the TAT for any manual verification is 1 business day
+
 ### Note on PAN validation
 - You need to provide `pan`, `name` and `date_of_birth` to trigger a PAN validation
 - As a part of this process, investor's PAN, name and date of birth will be verified individually
