@@ -286,4 +286,4 @@ You can use the same testing scenarios present in Verify bank account section. [
 |Name mismatch|_anything_|Lord Voldemort|_anything_|If the given `name` matches this pattern, it would mean that the name is a mismatch with the name present on the ITD database for the given PAN number|
 |Date of birth mismatch|_anything_|_anything_|2000-01-01|If the given `date_of_birth` matches this pattern, it would mean that the date of birth is a mismatch with the name present on the ITD database for the given PAN number|
 
-> **NOTE:** While testing, you can use different variations of these PAN validation to build your usecases as needed.
+> **NOTE:** While testing, you can use different variations of these PAN validation to build your usecases as needed. Also, if PAN is `invalid`, `status` at `name` and `date_of_birth` will also be `null`.
