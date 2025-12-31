@@ -29,7 +29,11 @@ Context contains an overview of the message being sent in the api call. Think of
 
     // Distributor identifier in a fully qualified domain name (FQDN) format
     "bap_id": "api.buyerapp.com",
-    // Distributor callback URL. Should contain the domain name used in the identifier
+    // Distributor callback URL. Below rules are applied
+    // 1. Buyer app can technically send a different URL in every action call. Corresponding on_action callback is sent to that URL
+    // 2. Unsolicted on_action callbacks are sent to the last used bap_uri
+    // 3. Should contain the domain name used in the identifier (bap_id)
+    // 4. Should not contain query params
     "bap_uri": "https://api.buyerapp.com/ondc",
 
     // POA identifier in a fully qualified domain name (FQDN) format
