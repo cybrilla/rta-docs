@@ -281,8 +281,9 @@ You can use the same testing scenarios present in Verify bank account section. [
 ### PAN validation
 |Scenario|PAN format|Name|Date of birth|Description|
 |-|-|-|-|-|
-|Valid PAN|XXXPX3751X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`|
-|Aadhaar not seeded with PAN|XXXPX3752X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any combination of `name` and `date_of_birth`|
+| Valid PAN                   | xxxPxnnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPxnnnnx` (replace `x` with any alphabet and `n` with any number) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`                       |
+| Invalid PAN                   | xxxPInnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPInnnnx` (replace `x` with any alphabet and `n` with any number) are considered to be invalid PANs. This could be given with any combination of `name` and `date_of_birth`                       |
+| Aadhaar not seeded with PAN | xxxPAnnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPAnnnnx` (replace `x` with any alphabet and `n` with any number) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any combination of `name` and `date_of_birth` |
 |Name mismatch|_anything_|Lord Voldemort|_anything_|If the given `name` matches this pattern, it would mean that the name is a mismatch with the name present on the ITD database for the given PAN number|
 |Date of birth mismatch|_anything_|_anything_|2000-01-01|If the given `date_of_birth` matches this pattern, it would mean that the date of birth is a mismatch with the name present on the ITD database for the given PAN number|
 
