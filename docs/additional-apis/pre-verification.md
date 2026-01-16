@@ -278,12 +278,30 @@ You can use the same testing scenarios present in KYC Check section. [Here](http
 ### Bank account verification
 You can use the same testing scenarios present in Verify bank account section. [Here](https://docs.fintechprimitives.com/identity/verification/perform-bank-account-verification/#testing) is the link to that.
 
-### PAN validation
-|Scenario|PAN format|Name|Date of birth|Description|
-|-|-|-|-|-|
-|Valid PAN|XXXPX3751X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`|
-|Aadhaar not seeded with PAN|XXXPX3752X|_anything_|_anything_|PAN numbers that match XXXPX3751X (replace X with any alphabet) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any combination of `name` and `date_of_birth`|
-|Name mismatch|_anything_|Lord Voldemort|_anything_|If the given `name` matches this pattern, it would mean that the name is a mismatch with the name present on the ITD database for the given PAN number|
-|Date of birth mismatch|_anything_|_anything_|2000-01-01|If the given `date_of_birth` matches this pattern, it would mean that the date of birth is a mismatch with the name present on the ITD database for the given PAN number|
+### PAN verification
 
-> **NOTE:** While testing, you can use different variations of these PAN validation to build your usecases as needed.
+| PAN format | Status | Code | Description |
+|-|-|-|-|
+| `XXXPINNNNX` | failed | invalid | PAN numbers that match `XXXPINNNNX` (replace `X` with any alphabet and `N` with any number) are considered to be invalid PANs as per ITD database. In these cases, the status for `name` and `date_of_birth` will be set as `false` |
+| `XXXPANNNNX` | failed | aadhaar_not_linked | PAN numbers that match `XXXPANNNNX` (replace `X` with any alphabet and `N` with any number) are cases where the Aadhaar is not seeded with the respective PANs as per ITD database |
+| `XXXPXNNNNX` | verified | null | PAN numbers that match `XXXPXNNNNX` (replace `X` with any alphabet and `N` with any number) are considered to be existent and valid PANs |
+
+> NOTE: In order to verify `pan`, you need to mandatorily pass `name` and `date_of_birth`.
+
+### Name verification
+
+| Name format | Status | Code | Description |
+|-|-|-|-|
+| `Lord Voldemort` | failed | mismatch | Names in this pattern are considered to be values that are not matching with the respective PAN as per ITD database |
+| _anything else_ | verified | null | Any other format of the name given, is considered to be a value that is matching with the respective PAN as per ITD database |
+
+> NOTE: In order to verify `name`, you need to mandatorily pass `pan` and `date_of_birth`.
+
+### Date of birth verification
+
+| Date of birth format | Status | Code | Description |
+|-|-|-|-|
+| `2000-01-01` | failed | mismatch | Date of births in this pattern are considered to be values that are not matching with the respective PAN as per ITD database |
+| _anything else_ | verified | null | Any other format of the date of birth given, is considered to be a value that is matching with the respective PAN as per ITD database |
+
+> NOTE: In order to verify `date_of_birth`, you need to mandatorily pass `pan` and `name`.
