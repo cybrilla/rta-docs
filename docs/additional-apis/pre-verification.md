@@ -279,12 +279,14 @@ You can use the same testing scenarios present in KYC Check section. [Here](http
 You can use the same testing scenarios present in Verify bank account section. [Here](https://docs.fintechprimitives.com/identity/verification/perform-bank-account-verification/#testing) is the link to that.
 
 ### PAN validation
+
 |Scenario|PAN format|Name|Date of birth|Description|
 |-|-|-|-|-|
-| Valid PAN                   | xxxPxnnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPxnnnnx` (replace `x` with any alphabet and `n` with any number) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`                       |
-| Invalid PAN                   | xxxPInnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPInnnnx` (replace `x` with any alphabet and `n` with any number) are considered to be invalid PANs. This could be given with any combination of `name` and `date_of_birth`                       |
-| Aadhaar not seeded with PAN | xxxPAnnnnx | _anything_       | _anything_      | PAN numbers that match `xxxPAnnnnx` (replace `x` with any alphabet and `n` with any number) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any combination of `name` and `date_of_birth` |
-|Name mismatch|_anything_|Lord Voldemort|_anything_|If the given `name` matches this pattern, it would mean that the name is a mismatch with the name present on the ITD database for the given PAN number|
-|Date of birth mismatch|_anything_|_anything_|2000-01-01|If the given `date_of_birth` matches this pattern, it would mean that the date of birth is a mismatch with the name present on the ITD database for the given PAN number|
+| Invalid PAN | XXXPINNNNX | _anything_ | _anything_ | PAN numbers that match `XXXPINNNNX` (replace `X` with any alphabet and `N` with any number) are considered to be invalid PANs. In these cases, the status for `name` and `date_of_birth` will be set as `false`|
+| Aadhaar not seeded with PAN | XXXPANNNNX | _anything_ | _anything_ | PAN numbers that match `XXXPANNNNX` (replace `X` with any alphabet and `N` with any number) are cases where the Aadhaar is not seeded with the respective PANs. This could be given with any `name` and `date_of_birth`|
+| Name mismatch | XXXPXNNNNX | Lord Voldemort | _anything_ | If the `name` matches this pattern and the associated PAN number matches the pattern `XXXPXNNNNX` (replace `X` with any alphabet and `N` with any number), this will result in a name mismatch at ITD database for the given PAN number|
+| Date of birth mismatch | XXXPXNNNNX | _anything_ | 2000-01-01 | If the `date_of_birth` matches this pattern and the associated PAN number matches the pattern `XXXPXNNNNX` (replace `X` with any alphabet and `N` with any number), this will result in a date of birth mismatch at ITD database for the given PAN number|
+| Aadhaar not seeded along with name and date of birth mismatches | XXXPANNNNX | Lord Voldemort | 2000-01-01 | If `name` and `date_of_birth` match these patterns along with PAN number matching the pattern `XXXPANNNNX` (replace `X` with any alphabet and `N` with any number), this will result in a combination of name and date of birth mismatches along with Aadhaar not being seeded with PAN number at ITD database|
+| Valid PAN | XXXPXNNNNX | _anything_ | _anything_ | PAN numbers that match `XXXPXNNNNX` (replace `X` with any alphabet and `N` with any number) are considered to be existent and valid PANs. This could be given with any combination of `name` and `date_of_birth`|
 
-> **NOTE:** While testing, you can use different variations of these PAN validation to build your usecases as needed.
+> **NOTE:** While testing, you can use different variations of these PAN validation simulations to build your usecases as needed. 
