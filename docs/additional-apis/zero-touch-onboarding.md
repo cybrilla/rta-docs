@@ -134,7 +134,7 @@ curl --location '{{base_url}}/v2/bank_account_lookups' \
 |mode|yes|enum|Mode through which the investor consent was collected|
 |validity_type|yes|enum|Validity of the investor consent collected|
 
-> **NOTE:** The `bank_account_lookup` object will be returned as the response.
+> The `bank_account_lookup` object will be returned as the response.
 
 
 ### Fetch Bank Account Lookup
@@ -153,7 +153,7 @@ curl --location '{{base_url}}/v2/bank_account_lookups/:id' \
 |-|-|-|-|
 |id|yes|string|ID of the `bank_account_lookup` object|
 
-> **NOTE:** The `bank_account_lookup` object will be returned as the response.
+> The `bank_account_lookup` object will be returned as the response.
 
 
 <br/>
@@ -301,7 +301,7 @@ curl --location '{{base_url}}/v2/investor_data_lookups' \
 |mode|yes|enum|Mode through which the investor consent was collected|
 |validity_type|yes|enum|Validity of the investor consent collected|
 
-> **NOTE:** The `investor_data_lookup` object will be returned as the response.
+> The `investor_data_lookup` object will be returned as the response.
 
 
 ### Fetch Investor Data Lookup
@@ -320,9 +320,12 @@ curl --location '{{base_url}}/v2/investor_data_lookups/:id' \
 |-|-|-|-|
 |id|yes|string|ID of the `investor_data_lookup` object|
 
-> **NOTE:** The `investor_data_lookup` object will be returned as the response.
+> The `investor_data_lookup` object will be returned as the response.
 
 <br/>
 ---
 
-> **NOTE:** Both these APIs **attempt** to fetch data from third-party sources provided they are available. Once data is fetched, accuracy isn’t validated. We strongly advise you to share the information with the investor and proceed only after their approval.
+> **NOTES:** 
+> - Both these APIs **attempt** to fetch data from third-party sources provided they are available
+> - Once data is fetched, accuracy isn’t validated. We strongly advise you to share these fetched details with the investor and proceed only after their approval
+> - You can only fetch these details once per phone number
