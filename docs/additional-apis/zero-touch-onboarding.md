@@ -9,24 +9,24 @@ The Zero Touch Onboarding APIs lets a partner to attempt fetching certain detail
 2. Investor Data Lookup API
 
 ## Obligations to partners using ZTO APIs
-- To be compliant with Cybersecurity and Cyber Resilience Framework (CSCRF), clients using ZTO APIs shall shall use industry standard, strong encryption algorithms (e.g.,RSA, AES, etc.) to store PII fetched from ZTO Lookup APIs
-- Clients should sponsor the ZTO Lookup transactions initiated at their end
-- Clients have to fetch the data only for investors who are initiating a mutual fund transaction or doing a mutual fund KYC. Clients should not use this data for any other purpose
-- Clients should not resell this data fetched from ZTO Lookup APIs
-- Clients should not store this data on foreign servers
-- Clients should not lookup data using ZTO APIs without obtaining explicit informed one time consent from investors
-- Clients should ensure that the investor consent text used is the same as approved by Cybrilla and not alter it in any manner
+- To be compliant with Cybersecurity and Cyber Resilience Framework (CSCRF), partners using ZTO APIs shall shall use industry standard, strong encryption algorithms (e.g.,RSA, AES, etc.) to store PII fetched from ZTO Lookup APIs
+- Partners should get an approval from sponsor AMC. If sponsor AMC decides not to sponsor a particular partner, Cybrilla shall disable access of ZTO Lookup APIs to such partners
+- Partners have to fetch the data only for investors who are initiating a mutual fund transaction or doing a mutual fund KYC. Partners should not use this data for any other purpose
+- Partners should not resell this data fetched from ZTO Lookup APIs
+- Partners should not store this data on foreign servers
+- Partners should not lookup data using ZTO APIs without obtaining explicit informed one time consent from investors
+- Partners should ensure that the investor consent text used is the same as approved by Cybrilla and not alter it in any manner
 	- Consent text for Bank account lookup - `I allow <partner> to fetch my bank account details using my phone number via Cybrilla and its partners.`
 	- Consent text for Investor data lookup - `I allow <partner> to fetch my demographic details using my phone number and name from the credit bureau via Cybrilla and its partners.`
-- Clients should only fetch bank account details once per phone number
-- Clients should only fetch investor details once per phone number + name combination
-- Clients should allow investors to review the fetched data and edit it as needed
-- In case of data breach at client's end, clients are obligated to (i) notify Cybrilla within 2 hours of any data breach; (ii) provide complete cooperation in Cybrilla's regulatory defense; (iii) bear all costs of investigation/forensics; (iv) not settle claims without Cybrilla's approval. Client assumes sole responsibility for all communications with regulators/investors
-- Clients shall indemnify, defend, and hold harmless Cybrilla, its affiliates, officers, and employees from and against ALL claims, damages, losses, liabilities, costs, and expenses (including attorneys' fees) arising out of or relating to: (i) Client's breach of DPDP Act obligations; (ii) any data breach caused by Client's systems/sub-processors; (iii) regulatory fines/penalties imposed on Client; (iv) investor lawsuits against Client. This indemnity survives bankruptcy, insolvency, or termination
-- Clients shall not use robot/crawler or any other automated mechanism to use lookup APIs
+- Partners should only fetch bank account details once per phone number
+- Partners should only fetch investor details once per phone number + name combination
+- Partners should allow investors to review the fetched data and edit it as needed
+- In case of data breach at partner's end, partners are obligated to (i) notify Cybrilla within 2 hours of any data breach; (ii) provide complete cooperation in Cybrilla's regulatory defense; (iii) bear all costs of investigation/forensics; (iv) not settle claims without Cybrilla's approval. Partner assumes sole responsibility for all communications with regulators/investors
+- Partners shall indemnify, defend, and hold harmless Cybrilla, its affiliates, officers, and employees from and against ALL claims, damages, losses, liabilities, costs, and expenses (including attorneys' fees) arising out of or relating to: (i) Partner's breach of DPDP Act obligations; (ii) any data breach caused by Partner's systems/sub-processors; (iii) regulatory fines/penalties imposed on Partner; (iv) investor lawsuits against Partner. This indemnity survives bankruptcy, insolvency, or termination
+- Partners shall not use robot/crawler or any other automated mechanism to use lookup APIs
 - Cybrilla doesn't guarantee any SLAs for lookup APIs
 - Cybrilla doesn't guarantee the quality of the data returned via lookup APIs
-- Cybrilla may audit the client’s implementation at any time, and the client shall fully cooperate and provide necessary support for such audits
+- Cybrilla may audit the partner’s implementation at any time, and the partner shall fully cooperate and provide necessary support for such audits
 
 ## Go-live checklist for ZTO APIs
 - Get an approval from a sponsor AMC with which Cybrilla has signed an agreement for facilitating this sponsorship
