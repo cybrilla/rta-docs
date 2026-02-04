@@ -21,8 +21,6 @@ The Zero Touch Onboarding APIs lets a partner to attempt fetching certain detail
 - Partners should only fetch bank account details once per phone number
 - Partners should only fetch investor details once per phone number + name combination
 - Partners should allow investors to review the fetched data and edit it as needed
-- In case of data breach at partner's end, partners are obligated to (i) notify Cybrilla within 2 hours of any data breach; (ii) provide complete cooperation in Cybrilla's regulatory defense; (iii) bear all costs of investigation/forensics; (iv) not settle claims without Cybrilla's approval. Partner assumes sole responsibility for all communications with regulators/investors
-- Partners shall indemnify, defend, and hold harmless Cybrilla, its affiliates, officers, and employees from and against ALL claims, damages, losses, liabilities, costs, and expenses (including attorneys' fees) arising out of or relating to: (i) Partner's breach of DPDP Act obligations; (ii) any data breach caused by Partner's systems/sub-processors; (iii) regulatory fines/penalties imposed on Partner; (iv) investor lawsuits against Partner. This indemnity survives bankruptcy, insolvency, or termination
 - Partners shall not use robot/crawler or any other automated mechanism to use lookup APIs
 - Cybrilla doesn't guarantee any SLAs for lookup APIs
 - Cybrilla doesn't guarantee the quality of the data returned via lookup APIs
