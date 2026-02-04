@@ -54,7 +54,10 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
     "name": "John Doe",
     "date_of_birth": "2000-01-02",
     "email_address": "joyboy@myself.com",
-    "phone_number": "9876543210",
+    "phone_number": {
+        "isd": "+91",
+        "number": "9876543210"  
+    },
     "residential_status": "resident",
     "gender": "male",
     "marital_status": "unmarried",
@@ -131,7 +134,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |name|string|Name of the investor|
 |date_of_birth|String|Date of birth of the investor|
 |email_address|string|Email address of the investor|
-|phone_number|string|Phone number of the investor|
+|phone_number|hash|Phone number of the investor|
 |residential_status|enum|Investor's residential status. Possible values are - `resident`|
 |gender|enum|Investor's gender. Possible values are - `male`, `female` and `transgender`|
 |marital_status|enum|Marital status of the investor. Possible values are `married`, `unmarried` and `others`|
@@ -166,6 +169,12 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |submitted_at|string|The timestamp at which the `kyc_form` object moved into `submitted` state|
 |failed_at|string|The timestamp at which the `kyc_form` object moved into `failed` state|
 |expires_at|string|The timestamp at which the `kyc_form` object will move into `expired` state|
+
+### Phone Number hash
+|Attribute|Type|Comments|
+|-|-|-|
+|isd|string|ISD code of investor's phone number|
+|number|string|Investor's phone number|
 
 ### Non Indian Tax Residency hash
 |Attribute|Type|Comments|
@@ -224,7 +233,7 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 |proof_details_callback_url|yes|yes|string|The callback URL where the investor will be redirected to post proof fetch workflow|
 |esign_callback_url|yes|yes|string|The callback URL where the investor will be redirected to post esign workflow|
 |email_address|no|yes|string|Email address of the investor|
-|phone_number|no|yes|string|Phone number of the investor|
+|phone_number|no|yes|hash|Phone number of the investor|
 |residential_status|no|yes|enum|Investor's residential status. Allowed values are - `resident`|
 |gender|no|yes|enum|Investor's gender. Allowed values are - `male`, `female` and `transgender`|
 |marital_status|no|yes|enum|Marital status of the investor. Allowed values are `married`, `unmarried` and `others`|
@@ -243,6 +252,12 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 |non_indian_tax_residency_2|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |non_indian_tax_residency_3|no|yes|hash|If investor is a tax payer in any country other than India, such details will be mentioned here|
 |geo_location|no|yes|hash|Geo-location of the investor from where this KYC form is being filled up and submitted. Ensure that this in within India|
+
+### Phone Number hash
+|Attribute|Mandatory|Type|Comments|
+|-|-|-|-|
+|isd|yes|string|ISD code of investor's phone number|
+|number|yes|string|Investor's phone number|
 
 ### Non Indian Tax Residency hash
 |Attribute|Mandatory|Type|Comments|
