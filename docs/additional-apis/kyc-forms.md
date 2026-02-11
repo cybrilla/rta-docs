@@ -381,5 +381,5 @@ In sandbox, simulation facility can be used to test the submission of KYC Forms 
 
 > **NOTE:** 
 > - To simulate various KYC Statuses, you can use the same testing scenarios present in KYC Check section. [Here](https://docs.fintechprimitives.com/identity/kyc-check/#testing) is the link to that.
-> - To simulate various PAN verification scenarios, you can reuse the PAN verification simulation logic present [here](pre-verification#pan-validation)
+> - To simulate various PAN verification scenarios, you can reuse the PAN verification simulation logic present [here](pre-verifications#pan-validation)
 > - While you use the KYC Check simulations, you can also use the above mentioned KYC Form submission simulation as a part of the same input, to test out multiple scenarios.
