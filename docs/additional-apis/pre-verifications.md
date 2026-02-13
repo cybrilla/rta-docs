@@ -130,7 +130,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 |Attribute|Type|Remarks|
 |---|---|---|
 |status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor cannot investor because his KYC record is incomplete. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>3.`upstream_error`: There was an error contacting upstream to check readiness <br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
+|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor cannot invest because his KYC record is incomplete. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>3.`upstream_error`: There was an error contacting upstream to check readiness <br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 **Handling different `readiness` scenarios**

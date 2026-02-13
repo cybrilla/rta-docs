@@ -35,7 +35,7 @@ For partner tokens, we are using Client Credentials flow. This flow is recommend
 
 ### Sample Request
 ```
-curl --location '{{base_url}}/poa/auth/token' \
+curl --location '{{base_url}}/v2/auth/cybrillarta/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'client_id=<client_id>' \
 --data-urlencode 'client_secret=<client_secret>' \
