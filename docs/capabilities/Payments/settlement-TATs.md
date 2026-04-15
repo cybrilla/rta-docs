@@ -51,7 +51,7 @@ Same-day NAV is applicable only when payments are made through UPI (if supported
 ## eNACH and Basket order Netbanking supported banks
 
 > **Note:**  
-> - UPI is supported across all UPI-enabled banks. The table below lists only Netbanking and eNACH support.
+> - UPI is supported across all UPI-enabled banks.
 
 The following table lists the banks that support Netbanking payments for basket orders for lumpsum transactions and eNACH mandate authorizations via Netbanking.
 
