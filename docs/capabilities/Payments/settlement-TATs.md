@@ -47,6 +47,9 @@ Same-day NAV is applicable only when payments are made through UPI (if supported
 | Nippon India Mutual Fund AMC | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 | HDFC Mutual Fund AMC | Yes | Kotak Bank<br />HDFC Bank<br />ICICI Bank<br />IDBI Bank<br />IDFC FIRST Bank<br />State Bank of India<br />Axis Bank<br />Yes Bank Ltd |
 | 360 One Mutual Fund | No | Kotak Bank<br />ICICI Bank<br />IDFC FIRST Bank<br />IndusInd Bank<br />Axis Bank Ltd |
+| Abakkus Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />Axis Bank<br />ICICI Bank |
+| PGIM Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| WhiteOak Capital Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 
 ## eNACH and Basket order Netbanking supported banks
 
