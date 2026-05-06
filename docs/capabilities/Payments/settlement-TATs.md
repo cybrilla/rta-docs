@@ -40,15 +40,23 @@ Same-day NAV is applicable only when payments are made through UPI (if supported
 | Capitalmind Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
 | Quantum Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 | DSP Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
-| Kotak Mahindra Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
-| ICICI Prudential Mutual Fund | No | State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
+| Kotak Mahindra Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| ICICI Prudential Mutual Fund | Yes | State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Yes Bank Ltd |
 | Axis Mutual Fund | Yes | Kotak Bank<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank<br />State Bank Of India |
 | Quant Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDFC FIRST Bank |
 | Nippon India Mutual Fund AMC | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
-| HDFC Mutual Fund AMC | No | Kotak Bank<br />HDFC Bank<br />ICICI Bank<br />IDBI Bank<br />IDFC FIRST Bank<br />State Bank of India<br />Axis Bank<br />Yes Bank Ltd |
+| HDFC Mutual Fund AMC | Yes | Kotak Bank<br />HDFC Bank<br />ICICI Bank<br />IDBI Bank<br />IDFC FIRST Bank<br />State Bank of India<br />Axis Bank<br />Yes Bank Ltd |
 | 360 One Mutual Fund | No | Kotak Bank<br />ICICI Bank<br />IDFC FIRST Bank<br />IndusInd Bank<br />Axis Bank Ltd |
+| Abakkus Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />Axis Bank<br />ICICI Bank |
+| WhiteOak Capital Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| HSBC Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd |
+| Invesco Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Canara Robeco Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Canara Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 
 ## eNACH and Basket order Netbanking supported banks
+
+> **Note:**  
+> - UPI is supported across all UPI-enabled banks.
 
 The following table lists the banks that support Netbanking payments for basket orders for lumpsum transactions and eNACH mandate authorizations via Netbanking.
 
