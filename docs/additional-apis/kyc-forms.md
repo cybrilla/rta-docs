@@ -4,18 +4,23 @@ sidebar_label: KYC Forms API
 title: KYC Forms API (Early access)
 ---
 
-The KYC Forms API lets a partner submit or modify KYC details of their investors. Currently, Cybrilla POA supports only modification of existing KYC records. The modification of KYC record will be supported if the investors' KYC status at the KRA is one of the below -
+The KYC Forms API lets a partner submit a fresh KYC record or modify KYC details of their investors. Cybrilla POA supports both - submitting fresh KYC records and modification of existing KYC records. 
+
+The submission of fresh KYC records will be supported if the investors' KYC status at the KRA is one of the below -
+- `unavailable`
+
+The modification of KYC records will be supported if the investors' KYC status at the KRA is one of the below -
 - `validated`
 - `verified` or `registered`
 - `onhold`
 
-## Workflow to Modify a particular KYC Record
-1. As a good practice, first check the KYC status of the investor using the PAN number. If the KYC status is one of the above mentioned ones, only then intiate a KYC Form with `type = modify`
-2. Create a KYC Form with `type = modify` by giving `pan`, `name`, `date_of_birth`, `proof_details_callback_url` and `esign_callback_url`. At this stage, `kyc_form` object will be created with `under_review` state. Internally Cybrilla will decide if the particular KYC record linked against the given PAN is eligible for KYC Modification or not. If not eligible, `kyc_form` will move into `failed` state with `reason = ineligible_for_kyc_modification` 
+## Workflow to submit a particular KYC Record
+1. As a good practice, first check the KYC status of the investor using the PAN number. Based on the KYC status as given above, initiate a KYC Form with either `type = fresh` (for fresh KYC submissions) or `type = modify` (for KYC modifications)
+2. Create a KYC Form with `type = fresh` or `type = modify` by giving `pan`, `name`, `date_of_birth`, `proof_details_callback_url` and `esign_callback_url`. At this stage, `kyc_form` object will be created with `under_review` state. Internally Cybrilla will decide if the particular KYC record linked against the given PAN is eligible for the requested KYC submission or not. If not eligible, `kyc_form` will move into `failed` state with either `reason = ineligible_for_fresh_kyc` or `reason = ineligible_for_kyc_modification` depending on the `type` provided
     - `proof_details_callback_url` will take in the URL where you want the investor to redirect back after the Digilocker journey
     - `esign_callback_url` will take in the URL where you want the investor to redirect back after the esign journey
     - Please note that `pan`, `name` and `date_of_birth` should be as per ITD / PAN records
-3. If the KYC record is eligible to be modified, then `kyc_form` will move into `created` state. Now, you need to provide all the details needed to complete the form. You can refer to `requirements.fields_needed` array to figure out the pending details.
+3. If the requested action is valid, then `kyc_form` will move into `created` state. Now, you need to provide all the details needed to complete the form. You can refer to `requirements.fields_needed` array to figure out the pending details.
 4. You will also see a redirection URL present in the `proof_details.fetch_url` attribute. Use this URL to redirect your investor into the Digilocker page and the investor has to complete the journey to fetch Aadhaar details. Once Aadhaar details are fetched, the same will be used as both Identity and Address proofs.  
     4.1. In case the proof details fetch fails due to some reason, you can retry the same using `Retry proof details fetch` API.  
     4.2. Note that you can use this Retry proof details fetch API only if `proof_details.status = failed`.  
@@ -35,9 +40,11 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 
 |Scenario|Type of KYC Form|Action taken|
 |-|-|-|
+|Investor's KYC is <br/>- `unavailable`|`fresh`|Cybrilla will allow such investors to submit fresh KYC Form|
+|Investor's KYC is other than <br/>- `unavailable`|`fresh`|Cybrilla will not allow such investors to submit fresh KYC Form|
 |Investor's KYC is <br/>- `validated` <br/>- `verified` or `registered` <br/>- `onhold`|`modify`|Cybrilla will allow such investors to submit Modify KYC Form|
 |Investor's KYC is other than <br/>- `validated` <br/>- `verified` or `registered` <br/>- `onhold`|`modify`|Cybrilla will not allow such investors to submit Modify KYC Form|
-|Investor's PAN details do not match with ITD/PAN database|`modify`|Cybrilla will not allow such investors to submit Modify KYC Form|
+|Investor's PAN details do not match with ITD/PAN database|`modify` / `fresh`|Cybrilla will not allow such investors to submit Modify KYC Form|
 
 ## KYC Form object
 ```json
@@ -127,7 +134,7 @@ The KYC Forms API lets a partner submit or modify KYC details of their investors
 |---|---|---|
 |object|string|Value will always be `kyc_form`. Objects of the same type share the same value|
 |id|string|Unique identifier of the `kyc_form` object|
-|type|enum|Type of the KYC Form. Possible values are - `modify`|
+|type|enum|Type of the KYC Form. Possible values are - `fresh` and `modify`|
 |status|string|Indicates the what status of pre verification<br/>- `under_review` - Cybrilla is internally checking the eligibility for the type of KYC form initiated<br/>- `created` - KYC form is created and the data can be provided as indicated in `requirements.fields_needed` array<br/>- `awaiting_esign` - The KYC form is completely filled up and the invesor has to esign the same in-order to submit it to the processing entity<br/>- `awaiting_submission` - Cybrilla is attempting to submit the esigned KYC form to the processing entity<br/>- `submitted` - The esigned KYC form is submitted to the processing entity<br/>- `failed` - KYC form failed to successfully reach an end state. Refer to `reason` for more details<br/>- `expired` - KYC form is expired since investor did not take any action on it|
 |reason|string|The reason why `kyc_form` is in a `failed` state|
 |pan|string|PAN number of the investor|
@@ -226,7 +233,7 @@ curl --location --request POST '{{base_url}}/poa/kyc_forms' \
 
 |Name|Mandatory to create `kyc_form` object|Mandatory to submit `kyc_form` details|Type|Comments|
 |-|-|-|-|-|
-|type|yes|yes|enum|Type of the KYC Form. Allowed values are - `modify`|
+|type|yes|yes|enum|Type of the KYC Form. Allowed values are - `fresh` and `modify`|
 |pan|yes|yes|string|PAN number of the investor. This should be in the format `AAAPANNNNA` where `A` can be any alphabet and `N` can be any number|
 |name|yes|yes|string|Name of the investor. This should not contain any special characters|
 |date_of_birth|yes|yes|string|Date of birth of the investor in the format `yyyy-mm-dd`|
