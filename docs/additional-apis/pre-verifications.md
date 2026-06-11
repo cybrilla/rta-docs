@@ -272,7 +272,7 @@ curl --location '{{base_url}}/poa/pre_verifications/:id' \
 
 In sandbox, simulation facility can be used to test pre verifications. This facility is only available in sandbox.
 
-### Readiness and bank account verification
+### Readiness
 You can use the same testing scenarios present in KYC Check section. [Here](https://docs.fintechprimitives.com/identity/kyc-check/#testing) is the link to that.
 
 ### Bank account verification
