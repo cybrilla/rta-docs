@@ -18,7 +18,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 5. Else if `readiness.status = failed`, it means the investor is not yet ready to invest. Refer to `readiness.code` to understand why the investor is not ready.
 6. If `readiness.status = failed` and `readiness.code = kyc_unavailable`, then it means that there is no KYC record available for this investor, at any of the KRAs. In these cases, use `KYC Request` feature to submit a fresh KYC application.
 7. If `readiness.status = failed` and `readiness.code = upstream_error`, then retry the request
-
+8. Test
 ## Workflow to verify investor's bank accounts
 1. Create a Pre Verification request by providing `pan`, `name` and the list of `bank_accounts` that have to be verified. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the bank account verifications are attempted. You can use the `status` attribute to check the state of Pre Verification.
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
