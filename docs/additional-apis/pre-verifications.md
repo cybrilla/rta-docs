@@ -15,9 +15,17 @@ The Pre Verification API lets a partner verify certain demographic information o
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
 3. If `status` is `completed`, it means there is a result available.
 4. At this stage, if `readiness.status = verified`, it means the investor is ready to invest. You can go ahead and accept the investments from such investors.
-5. Else if `readiness.status = failed`, it means the investor is not yet ready to invest. Refer to `readiness.code` to understand why the investor is not ready.
-6. If `readiness.status = failed` and `readiness.code = kyc_unavailable`, then it means that there is no KYC record available for this investor, at any of the KRAs. In these cases, use `KYC Request` feature to submit a fresh KYC application.
-7. If `readiness.status = failed` and `readiness.code = upstream_error`, then retry the request
+5. Else if `readiness.status = failed`, it means the investor is not yet ready to invest. Refer to the below table to understand the next course of action.
+
+|Readiness Code|Action required for compliance|
+|---|---|
+|`kyc_unavailable`<br/>`kyc_rejected`|Use [KYC Forms API](/additional-apis/kyc-forms.md) to initiate fresh KYC for this investor.|
+|`kyc_incomplete`<br/>`kyc_onhold`<br/>`kyc_legacy`<br/>|Use [KYC Forms API](/additional-apis/kyc-forms.md) to modify KYC record for this investor. Investor can only invest once readiness.status changes to `verified`.|
+|`kyc_underprocess`|No action required. Wait for the KYC status to change to validated at KRA.|
+|`kyc_deactivated`|No further action possible. Investments cannot be accepted for investor.|
+|`unknown`|Next course of action cannot be determined due to unclear failure reason at KRA.|
+
+6. If `readiness.status = failed` and `readiness.code = upstream_error`, then retry the request.
 
 ## Workflow to verify investor's bank accounts
 1. Create a Pre Verification request by providing `pan`, `name` and the list of `bank_accounts` that have to be verified. The Pre Verification will be in `accepted` state which means this request has been accepted and the internally the bank account verifications are attempted. You can use the `status` attribute to check the state of Pre Verification.
@@ -50,8 +58,7 @@ The Pre Verification API lets a partner verify certain demographic information o
 2. Check the updated status using the Fetch Pre Verification API which would take the `id` or Pre Verification object.
 3. If `status` is `completed`, it means there is a result available.
 4. At this stage, if `pan.status = verified`, it means the investor's PAN number exists and it is valid.  
-4.1. Else if `pan.status = failed`, it means the investor's PAN number is not suitable to be used. Refer to `pan.code` to understand more. 
-4.2. If `pan.status = failed` and `pan.code = invalid`, it means that the PAN number is either non-existent or invalid
+4.1. Else if `pan.status = failed`, it means the investor's PAN number is not suitable to be used. Refer to `pan.code` to understand more.<br/>4.2. If `pan.status = failed` and `pan.code = invalid`, it means that the PAN number is either non-existent or invalid.<br/>
 4.3. If `pan.status = failed` and `pan.code = aadhaar_not_linked`, it means investor's Aadhaar is not seeded with the PAN record.
 5. At this stage, if `name.status = verified`, it means the investor's name matches with the PAN records at IT Department.  
 5.1. Else if `name.status = failed`, it means the investor's does not match with the PAN records and hence not suitable to be used. Refer to `name.code` to understand more. Possible value for `name.code` is `mismatch`.
@@ -129,13 +136,16 @@ The Pre Verification API lets a partner verify certain demographic information o
 ### Readiness hash
 |Attribute|Type|Remarks|
 |---|---|---|
-|status|string|1. `verified`: Investor can proceed to invest <br/>2.`failed`:Investor cannot invest. Please check code for more details on failure|
-|code|string|1. `kyc_unavailable`: Investor cannot invest because KYC is unavailable<br/>2.`kyc_incomplete`: Investor cannot invest because his KYC record is incomplete. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>3.`upstream_error`: There was an error contacting upstream to check readiness <br/>4.`unknown`: Investor is KYC Non compliant but the reason for non-compliance is not known|
+|status|string|1. `verified`: Investor can proceed to invest. <br/>2. `failed`: Investor cannot invest. Please check code for more details on failure.|
+|code|string|1. `kyc_unavailable`: No KYC record available for this investor at KRA.<br/>2. `kyc_onhold`: KYC on hold at KRA due to data issues.<br/>3. `kyc_rejected`: KYC submitted earlier by investor has been rejected.<br/>4. `kyc_deactivated`: KYC record has been permanently deactivated. No investments can be accepted and no new KYC can be submitted. Reasons could include fraud detection or demise of the investor.<br/>5. `kyc_legacy`: Investor was KYC compliant under older regulations but does not meet current KYC norms.<br/>6. `kyc_underprocess`: KYC submitted is currently under process at KRA.<br/>7. `kyc_incomplete`: KYC status is either Registered or Verified. There could be 3 possibilities here:<br/>- Aadhaar not linked with KYC record<br/>- PAN is not seeded with Aadhaar<br/>- Email address or phone number is not present<br/>8. `unknown`: Investor is KYC non-compliant but the exact reason could not be determined by KRA.<br/>9. `upstream_error`: There was an error contacting upstream to check readiness. <br/>
 |reason|string|Descriptive reason for the failure. Should be only relied for understanding the failure and not for programmatically interpreting the failure. For programmatic failure interpretation always use `code`|
 
 **Handling different `readiness` scenarios**
-- If `readiness.status = verified` or `readiness.status = failed` with `readiness.code = kyc_incomplete`, you can use [KYC Forms API](/additional-apis/kyc-forms.md) to update the investor details if required.
-- If `readiness.status = failed` with `readiness.code = unavailable`, you need to initiate a fresh KYC for this investor and submit the same.
+- If `readiness.status = failed` with `readiness.code = kyc_unavailable`, `kyc_rejected` you can use [KYC Forms API](/additional-apis/kyc-forms.md) to submit a new KYC for this investor.
+- If `readiness.status = failed` with `readiness.code = kyc_incomplete`, `kyc_onhold`, `kyc_legacy` you can use [KYC Forms API](/additional-apis/kyc-forms.md) to modify KYC record for this investor.
+- If `readiness.status = failed` with `readiness.code = kyc_underprocess`, no action is required. Wait for the KYC status to change at KRA.
+- If `readiness.status = failed` with `readiness.code = kyc_deactivated`, no further action is possible. Investments cannot be accepted for this investor.
+- If `readiness.status = failed` with `readiness.code = upstream_error`, retry the request after some time.
 
 ### Name hash
 |Attribute|Type|Remarks|
