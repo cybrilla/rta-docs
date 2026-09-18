@@ -9,43 +9,117 @@ title: Capabilities
 ## Available
 
 ### Investor Types
-- Resident Indian (Individual)
+|Investor Type|Holding Pattern|
+|---|---|
+|Resident Indian (Individual)|Single|<br/>
+|NRI - Repatriation (NRE)|Single|<br/>
+|NRI - Non-Repatriation (NRO)|Single|
 
 ### Transaction Types
+### Folios created on ONDC
 - Lumpsum Purchase
-- SIP (monthly, daily)
-    - Ability to register a payment mandate
-    - Ability to pay for the first instalment immediately
+    - Single Scheme
+    - Basket purchase
+    - Payment using registered mandate
+- SIP
+    - Frequency
+        - Monthly
+        - Calendar Day Daily (7 days a week)
+        - Business Day Daily (Mon-Fri)
+    - Ability to register a payment mandate & first installment debit within 24 hours
+    - Skip an installment
+    - Modify future installment amount
+    - SIP cancellation
+    - Basket SIPs
+- Switch (by units, amount, switch all)
+- STP (by amount)
+    - Monthly Frequency
+    - Modify STP amount for future installments
+    - STP cancellation
 - Redemption (by units, amount, redeem all)
+- SWP (by amount)
+    - Monthly Frequency
+    - Modify SWP amount for future installments
+    - SWP cancellation 
+### External folios
+- Lumpsum purchase
+    - Single Scheme
+    - Basket purchase
+- SIP
+    - Frequency
+        - Monthly
+        - Calendar Day Daily (7 days a week)
+        - Business Day Daily (Mon-Fri)
+    - Ability to register a payment mandate & first installment debit within 24 hours
+    - Skip an installment
+    - Modify future installment amount
+    - SIP cancellation
+    - Basket SIPs
+
 
 ### Payment Options
-- UPI (auth: redirect url, collect flow, intent flow, QR code flow)
-- NACH (auth: netbanking)
-- UPI Autopay (auth: redirect url, collect flow, intent flow, QR code flow)
-- Netbanking
+- One-time payment modes
+    - Net Banking
+    - UPI
+- Recurring payment modes
+    - eNACH
+    - UPI Autopay
+- Collection account types supported
+    - Savings A/C
 
 ### Scheme Types
 - Regular schemes (for ARN holders)
 - Direct schemes (for RIAs)
 
-### Available Mutual Funds
-- Aditya Birla Sun life Mutual Fund
-- Capitalmind Mutual Fund
-- Bandhan Mutual Fund
-- UTI Mutual Fund
-- The Wealth Company Mutual Fund
-- Edelweiss Mutual Fund
-- JM Financial Mutual Fund
-- Quantum Mutual Fund
-- Motilal Oswal Mutual Fund
-- DSP Mutual Fund
-- Kotak Mahindra Mutual Fund
-- ICICI Prudential Mutual Fund
-- Axis Mutual Fund
-- Quant Mutual Fund
-- Nippon India Mutual Fund AMC
-- HDFC Mutual Fund AMC
-- 360 One Mutual Fund
+### Transaction Attribution
+- Distributor partners (via ARN/RIA code)
+- Sub-broker partners (via sub-broker code)
+- Relationship managers (via EUINs)
 
-## Roadmap
-- UPI Autopay: Register mandate and debit first instalment in one attempt
+### Bank Account and PAN Verification
+### Bank Account Verification
+- Savings A/C (Single holding only)
+- Current A/C
+### Manual Bank Account Verification
+- Available only for NRI investors
+### PAN Verification
+- Resident/Non-Resident Individuals
+
+### KYC
+- New KYC
+    - Resident Individuals only  
+- KYC Modification
+    - Resident Individuals only
+- KYC Status Check
+    - Available across Resident Individuals, NRIs, Non-Indivudals
+
+### Available Mutual Funds
+- 360 ONE Mutual Fund
+- Abakkus Mutual Fund
+- Aditya Birla Sun Life Mutual Fund
+- Axis Mutual Fund
+- Bandhan Mutual Fund
+- Canara Robeco Mutual Fund
+- CapitalMind Mutual Fund
+- DSP Mutual Fund
+- Edelweiss Mutual Fund
+- HDFC Mutual Fund
+- Helios Mutual Fund
+- HSBC Mutual Fund
+- ICICI Prudential Mutual Fund
+- Invesco Mutual Fund
+- JM Financial Mutual Fund
+- Kotak Mahindra Mutual Fund
+- Mirae Asset Mutual Fund
+- Motilal Oswal Mutual Fund
+- Navi Mutual Fund
+- Nippon India Mutual Fund
+- PGIM India Mutual Fund
+- Quant Mutual Fund
+- Quantum Mutual Fund
+- Tata Mutual Fund
+- The Wealth Company Mutual Fund
+- Trust Mutual Fund
+- UTI Mutual Fund
+- WhiteOak Capital Mutual Fund
+- Zerodha Mutual Fund
