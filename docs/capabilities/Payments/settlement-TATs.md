@@ -52,6 +52,7 @@ Same-day NAV is applicable only when payments are made through UPI (if supported
 | HSBC Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd |
 | Invesco Mutual Fund | No | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
 | Canara Robeco Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />Canara Bank<br />IndusInd Bank<br />Yes Bank Ltd<br />IDFC FIRST Bank |
+| Trust Mutual Fund | Yes | Kotak Bank<br />State Bank of India<br />HDFC Bank<br />Axis Bank<br />ICICI Bank<br />IDBI Bank<br />Yes Bank Ltd |
 
 ## eNACH and Basket order Netbanking supported banks
 
